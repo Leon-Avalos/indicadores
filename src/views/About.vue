@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="workspaces">
+    <h1>Yo habia ponido los espacios aqui! :v</h1>
   </div>
 </template>
