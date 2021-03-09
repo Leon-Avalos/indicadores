@@ -1,24 +1,19 @@
 # indicadores
 
-## Project setup
+Como correr el proyecto
+
+## Instalar dependencias
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compila y despliega el server local para desarrollo
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compila y minifica archivos para produccion
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
