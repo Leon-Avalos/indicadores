@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Investigadores</router-link> |
-      <router-link to="/Registro_espacio">Espacios de trabajo</router-link>
+      <router-link to="/Registro_espacio">Espacios de trabajo</router-link> |
+      <router-link to="/Registro_integrantes_espacio">Integrantes del espacio</router-link>
     </div>
     <router-view/>
   </div>

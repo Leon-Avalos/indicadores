@@ -2,6 +2,7 @@
   <div id="investigadores" class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <HelloWorld msg="Registro de Investigadores" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <div class="container">
       <section class="form">
         <form>
@@ -55,7 +56,7 @@
               </div>
             </div>
           </div>
-          <button type="submit" @click.prevent="crearInvestigador" class="btn btn-primary">Agregar</button>
+          <button type="submit" @click.prevent="crearInvestigador" class="btn btn-outline-success">Agregar</button>
         </form>
       </section>
       <section class="data">

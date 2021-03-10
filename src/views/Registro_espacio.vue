@@ -2,38 +2,28 @@
   <div id="espacio_trabajo" class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <HelloWorld msg="Registro de Espacio de trabajo" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <br>
    
     <div class="container">
       <section class="form">
         <form>
-          <div class="form-row">
-              <label for="inputNombreEspacioTrabajo">Espacio de trabajo</label>
-              <input
-                v-model="nombre"
-                type="text"
-                class="form-control"
-                id="inputNombreEspacioTrabajo"
-                placeholder="Nombre espacio de trabajo"
+          <div class="mb-3">
+              <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
+              <input v-model="nombre" type="text" class="form-control" id="inputNombreEspacioTrabajo" placeholder="Nombre espacio de trabajo"
               /> 
           </div>
-          <br>
-          <div class="form-row">
-            <label for="inputDescripcionEspacio">Descripcion</label>
-            <input
-              v-model="cedula"
-              type="text"
-              class="form-control"
-              id="inputDescripcionEspacio"
-              placeholder="Cedula"
-            />
-            
+
+          <div class="mb-3">
+            <label for="inputDescripciónEspacioTrabajo" class="form-label">Descripción espacio</label>
+            <textarea class="form-control" id="inputDescripciónEspacioTrabajo" rows="3"></textarea>
           </div>
-          <button type="submit" @click.prevent="crearEspacioDeTrabajo" class="btn btn-primary">Registrar</button>
+
+          <button type="submit" @click.prevent="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
         </form>
       </section>
 
       <section class="data">
-        
         <caption >
           Espacios de trabajo
         </caption>
@@ -54,6 +44,7 @@
             </tbody>
           </table>
       </section>
+      
     </div>
   </div>
 </template>
