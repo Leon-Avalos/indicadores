@@ -3,7 +3,8 @@
     <div id="nav">
       <router-link to="/Registro_investigadores">Investigadores</router-link> |
       <router-link to="/Registro_espacio">Espacios de trabajo</router-link> |
-      <router-link to="/Registro_integrantes_espacio">Integrantes del espacio</router-link>
+      <router-link to="/Registro_integrantes_espacio">Integrantes del espacio</router-link> |
+      <router-link to="/Crear_compromiso">Compromiso</router-link>
     </div>
     <router-view/>
   </div>

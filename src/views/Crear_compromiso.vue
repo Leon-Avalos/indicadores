@@ -1,8 +1,8 @@
 <template>
-  <div id="integrantes_espacio_trabajo" class="home">
+  <div id="crear_compromiso" class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+    <HelloWorld msg="Crear compromiso para un investigador" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <HelloWorld msg="Registro de integrantes del Espacio de trabajo" />
     <br>
    
     <div class="container">
@@ -13,37 +13,49 @@
         <option value="2">Two</option>
         <option value="3">Three</option>
       </select>
+      <label for="inputNombreDeInvestigador" class="form-label">Nombre del investigador</label>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Selecciona un investigador</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
       <br>
-      <form class="row g-3">
-        <div class="col-auto">
-          <label>Cedula investigador</label>
-        </div>
-        <div class="col-auto">
-          <label for="inputCedulaInvestigador" class="visually-hidden">Cedula investigador</label>
-          <input type="int" class="form-control" id="inputCedulaInvestigador" placeholder="Cedula">
-        </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-outline-success mb-3">Registrar en el espacio de trabajo</button>
-        </div>
-      </form>
+      <hr>
+      <br>
+        <form>
+          <div class="mb-3">
+              <label for="inputNombreCompromiso" class="form-label">Nombre del compromiso</label>
+              <input v-model="nombre" type="text" class="form-control" id="inputNombreCompromiso" placeholder="Nombre del compromiso"
+              /> 
+          </div>
+
+          <div class="mb-3">
+            <label for="inputDescripciónCompromiso" class="form-label">Descripción compromiso</label>
+            <textarea class="form-control" id="inputDescripciónCompromiso" rows="3"></textarea>
+          </div>
+
+          
+
+          <button type="submit" @click.prevent="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
+        </form>
 
       <section class="data">
         <caption >
-          Integrantes
+          Espacios
         </caption>
           <table class="table">
             <thead>
               <tr>
-                <th>Cedula</th>
-                <th>Nombre</th>
-                <th>Rol Investigador</th>
-                <th>Eliminar</th>
+                <th>Codigo</th>
+                <th>Nombre espacio</th>
+                <th>Descripción</th>
               </tr>
             </thead>
             <tbody>
               
 
-
+              
             </tbody>
           </table>
       </section>
@@ -67,8 +79,7 @@ export default {
     apellido: '',
     correo: '',
     contraseña: '',
-    investigadores: [],
-    options: ['Apple', 'Banana', 'Grape', 'Kiwi', 'Orange']
+    investigadores: []
   }),
   methods: {
     crearInvestigador: function() {

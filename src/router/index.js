@@ -22,6 +22,11 @@ const routes = [
     path: '/registro_integrantes_espacio',
     name: 'Registro_integrantes_espacio',
     component: () => import( '../views/Registro_integrantes_espacio.vue')
+  },
+  {
+    path: '/crear_compromiso',
+    name: 'Crear_compromiso',
+    component: () => import( '../views/Crear_compromiso.vue')
   }
 ]
 
