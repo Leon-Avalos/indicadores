@@ -7,14 +7,14 @@
    
     <div class="container">
       <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
-      <select class="form-select" aria-label="Default select example">
+      <select class="form-select" aria-label="Default select example" required>
         <option selected>Selecciona un espacio de trabajo</option>
         <option value="1">One</option>
         <option value="2">Two</option>
         <option value="3">Three</option>
       </select>
       <label for="inputNombreDeInvestigador" class="form-label">Nombre del investigador</label>
-      <select class="form-select" aria-label="Default select example">
+      <select class="form-select" aria-label="Default select example" required>
         <option selected>Selecciona un investigador</option>
         <option value="1">One</option>
         <option value="2">Two</option>
@@ -26,13 +26,12 @@
         <form>
           <div class="mb-3">
               <label for="inputNombreCompromiso" class="form-label">Nombre del compromiso</label>
-              <input v-model="nombre" type="text" class="form-control" id="inputNombreCompromiso" placeholder="Nombre del compromiso"
-              /> 
+              <input v-model="nombre" type="text" class="form-control" id="inputNombreCompromiso" placeholder="Nombre del compromiso" required/> 
           </div>
 
           <div class="mb-3">
             <label for="inputDescripciónCompromiso" class="form-label">Descripción compromiso</label>
-            <textarea class="form-control" id="inputDescripciónCompromiso" rows="3"></textarea>
+            <textarea class="form-control" id="inputDescripciónCompromiso" rows="3" required></textarea>
           </div>
 
           

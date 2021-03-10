@@ -16,6 +16,7 @@
                 class="form-control"
                 id="inputEmail4"
                 placeholder="Nombre"
+                required
               />
             </div>
             <div class="form-group col-md-6">
@@ -26,6 +27,7 @@
                 class="form-control"
                 id="apellido"
                 placeholder="Apellido"
+                required
               />
             </div>
           </div>
@@ -38,6 +40,7 @@
                 class="form-control"
                 id="cedula"
                 placeholder="Cedula"
+                required
               />
             </div>
             <div class="form-group col-md-6">
@@ -48,12 +51,13 @@
                 class="form-control"
                 id="email"
                 placeholder="Correo"
+                required
               />
             </div>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" >
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" required>
           </div>
           <button type="submit" @click.prevent="crearInvestigador" class="btn btn-outline-success">Registrar</button>
         </form>

@@ -10,13 +10,12 @@
         <form>
           <div class="mb-3">
               <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
-              <input v-model="nombre" type="text" class="form-control" id="inputNombreEspacioTrabajo" placeholder="Nombre espacio de trabajo"
-              /> 
+              <input v-model="nombre" type="text" class="form-control" id="inputNombreEspacioTrabajo" placeholder="Nombre espacio de trabajo" required/> 
           </div>
 
           <div class="mb-3">
             <label for="inputDescripciónEspacioTrabajo" class="form-label">Descripción espacio</label>
-            <textarea class="form-control" id="inputDescripciónEspacioTrabajo" rows="3"></textarea>
+            <textarea class="form-control" id="inputDescripciónEspacioTrabajo" rows="3" required></textarea>
           </div>
 
           <button type="submit" @click.prevent="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>

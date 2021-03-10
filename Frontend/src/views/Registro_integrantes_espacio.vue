@@ -7,7 +7,7 @@
    
     <div class="container">
       <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
-      <select class="form-select" aria-label="Default select example">
+      <select class="form-select" aria-label="Default select example" required>
         <option selected>Selecciona un espacio de trabajo</option>
         <option value="1">One</option>
         <option value="2">Two</option>
@@ -20,7 +20,7 @@
         </div>
         <div class="col-auto">
           <label for="inputCedulaInvestigador" class="visually-hidden">Cedula investigador</label>
-          <input type="int" class="form-control" id="inputCedulaInvestigador" placeholder="Cedula">
+          <input type="int" class="form-control" id="inputCedulaInvestigador" placeholder="Cedula" required>
         </div>
         <div class="col-auto">
           <button type="submit" class="btn btn-outline-success mb-3">Registrar en el espacio de trabajo</button>
