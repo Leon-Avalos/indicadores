@@ -1,7 +1,7 @@
 <template>
   <div id="espacio_trabajo" class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <HelloWorld msg="Registro de Espacios de trabajo" />
+    <HelloWorld msg="Registro de Espacio de trabajo" />
    
     <div class="container">
       <section class="form">
@@ -40,16 +40,16 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Cedula</th>
-                <th>Nombre</th>
-                <th>Correo</th>
+                <th>Codigo</th>
+                <th>Nombre espacio</th>
+                <th>Descripción</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(investigador) in investigadores" :key="investigador.cedula">
-                <td>{{investigador.cedula}}</td>
-                <td> {{investigador.nombre}} </td>
-                <td> {{investigador.correo}} </td>
+              <tr v-for="(espacio) in espacios" :key="espacio.codigo">
+                <td>{{espacio.cedula}}</td>
+                <td> {{espacio.nombre}} </td>
+                <td> {{espacio.descripcion}} </td>
               </tr>
             </tbody>
           </table>
