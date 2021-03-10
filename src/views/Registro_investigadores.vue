@@ -52,8 +52,8 @@
             </div>
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" >
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" >
           </div>
           <button type="submit" @click.prevent="crearInvestigador" class="btn btn-outline-success">Registrar</button>
         </form>

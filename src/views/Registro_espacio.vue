@@ -25,7 +25,7 @@
 
       <section class="data">
         <caption >
-          Espacios de trabajo
+          Espacios
         </caption>
           <table class="table">
             <thead>
