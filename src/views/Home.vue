@@ -71,8 +71,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(investigador, index) in investigadores" :key="investigador.cedula">
-                <td>{{index}}</td>
+              <tr v-for="(investigador) in investigadores" :key="investigador.cedula">
+                <td>{{investigador.cedula}}</td>
                 <td> {{investigador.nombre}} </td>
                 <td> {{investigador.correo}} </td>
               </tr>
