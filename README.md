@@ -6,6 +6,9 @@ Como correr el proyecto
 ```
 npm install
 ```
+## Descargar bootstrap 
+
+npm install vue bootstrap bootstrap-vue
 
 ### Compila y despliega el server local para desarrollo
 ```
