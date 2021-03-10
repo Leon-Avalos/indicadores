@@ -41,11 +41,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(espacio) in espacios" :key="espacio.codigo">
-                <td>{{espacio.cedula}}</td>
-                <td> {{espacio.nombre}} </td>
-                <td> {{espacio.descripcion}} </td>
-              </tr>
+              
+
+              
             </tbody>
           </table>
       </section>
