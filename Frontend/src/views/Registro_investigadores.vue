@@ -18,6 +18,9 @@
                 placeholder="Nombre"
                 required
               />
+              <p class="h-25 text-danger" v-show="!nombreValido">
+                El nombre es requerido
+              </p>
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">Apellido</label>
@@ -29,6 +32,9 @@
                 placeholder="Apellido"
                 required
               />
+              <p class="h-25 text-danger" v-show="!nombreValido">
+                El apellido es requerido
+              </p>
             </div>
           </div>
           <div class="form-row">
@@ -99,6 +105,8 @@ export default {
   data: () => ({
     cedula: '',
     nombre: '',
+    nombreValido: true,
+    apellidoValido: true,
     apellido: '',
     correo: '',
     contraseña: '',
@@ -106,6 +114,7 @@ export default {
   }),
   methods: {
     crearInvestigador: function() {
+      this.validarFormulario();
       this.investigadores.push({
         cedula: this.cedula,
         nombre: this.nombre,
@@ -114,7 +123,23 @@ export default {
         contraseña: this.contraseña,
       });
       console.log(this.investigadores)
+    },
+
+    validarFormulario: function() {
+      if (!this.nombre) {
+        this.nombreValido = false;
+      }
+      if(!this.apellido) {
+        this.apellidoValido = false;
+      }
+      if(!this.cedula) {
+        //In progress
+      }     
+      if(!this.correo) {
+        //In progress
+      }
     }
+
   }
 };
 </script>

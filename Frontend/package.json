@@ -2,7 +2,7 @@
   "name": "indicadores_frontend",
   "version": "1.0.0",
   "private": true,
-  "description": "En esta carpeta se encuentra todo lo relacionado con las páginas del sitio web, formularios y estilo de la página.",  
+  "description": "En esta carpeta se encuentra todo lo relacionado con las páginas del sitio web, formularios y estilo de la página.",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
