@@ -4,7 +4,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <HelloWorld msg="Registro de integrantes del Espacio de trabajo" />
     <br>
-   
+    <p></p>
     <div class="container">
       <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
       <select class="form-select" aria-label="Default select example" required>
@@ -41,9 +41,7 @@
               </tr>
             </thead>
             <tbody>
-              
-
-
+              <!-- TODO: Renderizar integrantes de el espacio seleccionado-->
             </tbody>
           </table>
       </section>
@@ -83,4 +81,3 @@ export default {
     }
   }
 };
-</script>
