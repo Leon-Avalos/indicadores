@@ -4,9 +4,9 @@ class ServicioPG {
 
     constructor(){
         this.pool = new Pool({
-            user: "",
-            host: "",
-            database: "+",
+            user: "postgres",
+            host: "localhost",
+            database: "ipm",
             password: "",
             port: 5432,
           });
