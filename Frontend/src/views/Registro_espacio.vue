@@ -13,13 +13,13 @@
 
           <div class="mb-3">
               <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
-              <input v-model="nombre" type="text" class="form-control" id="inputNombreEspacioTrabajo" placeholder="Nombre espacio de trabajo" required> 
+              <input v-model="nombreEspacio" type="text" class="form-control" id="inputNombreEspacioTrabajo" placeholder="Nombre espacio de trabajo" required> 
               <div class="invalid-feedback"> Ingrese el nombre del espacio de trabajo del proyecto </div>
           </div>
 
           <div class="mb-3">
             <label for="inputDescripciónEspacioTrabajo" class="form-label">Descripción espacio</label>
-            <textarea class="form-control" id="inputDescripciónEspacioTrabajo" rows="3" required></textarea>
+            <textarea v-model="descripcionEspacio" class="form-control" id="inputDescripciónEspacioTrabajo" rows="3" required></textarea>
             <div class="invalid-feedback"> Ingrese una descripción basica del espacio de proyecto </div>
           </div>
           <div>
@@ -27,11 +27,11 @@
           </div>
 
           <div class="mb-3">
-            <input type="date" name="Fecha"  class="form-control" id="" required>
+            <input type="date" v-model="fecha" name="Fecha"  class="form-control" id="" required>
             <div class="invalid-feedback"> Ingrese fecha de culminación del proyecto </div>
           </div>
 
-          <button type="submit" @click="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
+          <button type="submit" @click.prevent="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
         </form>
       </section>
 
@@ -70,6 +70,7 @@ export default {
   },
   data: () => ({
     nombreEspacio: '',
+    fecha: '',
     descripcionEspacio: '',
     espaciosDeTrabajo: []
 
@@ -80,7 +81,12 @@ export default {
         nombreEspacio: this.nombreEspacio,
         descripcionEspacio: this.descripcionEspacio
       });
-      console.log(this.espaciosDeTrabajo)
+      this.limpiarCampos();
+    },  
+    limpiarCampos: function(){
+      this.nombreEspacio = '';
+      this.fecha = '';
+      this.descripcionEspacio = '';
     }
   }
 };
