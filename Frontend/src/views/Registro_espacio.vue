@@ -1,6 +1,6 @@
 <template>
   <div id="espacio_trabajo" class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+    <!-- <img alt="Vue logo" src="../static/logo.png"> -->
     <HelloWorld msg="Registro de Espacio de trabajo" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <br>

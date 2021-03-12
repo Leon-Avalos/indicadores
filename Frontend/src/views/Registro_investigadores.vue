@@ -1,6 +1,6 @@
 <template>
   <div id="investigadores" class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+    <!-- <img alt="Vue logo" src="../static/logo.png"> -->
     <HelloWorld msg="Registro de Investigadores" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"

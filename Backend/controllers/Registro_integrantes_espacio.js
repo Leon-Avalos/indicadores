@@ -1,0 +1,71 @@
+/**
+ * CONTROLADOR DE INTEGRANTES
+ *
+ */
+
+//Importar servicio de postgres
+const ServicioPg = require("../services/postgreSQL");
+
+/**
+ * Validar la información del integrante
+ * @param {*} integrante Json del integrante
+ */
+let validarIntegrante = (integrante) => {
+  if (!integrante) {
+    throw {
+      ok: false,
+      mensaje: "La información del integrante es obligatoria.",
+    };
+  }
+  if (!integrante.researcher_document) {
+    throw { ok: false, mensaje: "El documento del integrante es obligatorio." };
+  }
+  if (!integrante.idworkspace) {
+    throw { ok: false, mensaje: "El codigo del espacio de trabajo es obligatorio.",
+    };
+  }
+};
+
+/**
+ * Guardar en base de datos un integrante
+ * @param {*} integrante
+ */
+let guardarIntegrante = async (integrante) => {
+  console.log(integrante);
+  let _servicio = new ServicioPg();
+  let sql = `INSERT INTO public.researcher_workspace(
+	researcher_document, idworkspace)
+    VALUES (
+    ${integrante.researcher_document}, 
+    '${integrante.idworkspace}');`;
+
+  let respuesta = await _servicio.ejecutarSql(sql);
+  return respuesta;
+};
+
+/**
+ * Consultar Integrantes
+ * @param {*} filtros
+ */
+let consultarIntegrantes = async () => {
+    let _servicio = new ServicioPg();
+    let sql = `SELECT * FROM public.researcher_workspace;`;
+
+    let respuesta = await _servicio.ejecutarSql(sql);
+    return respuesta;
+};
+
+let eliminarIntegrante = async ({ idresearcher_workspace }) => {
+  let _servicio = new ServicioPg();
+  let sql = `DELETE FROM public.researcher_workspace WHERE  idresearcher_workspace=${idresearcher_workspace} cascade`;
+
+  let respuesta = await _servicio.ejecutarSql(sql);
+  return respuesta;
+};
+
+module.exports = {
+  validarIntegrante,
+  guardarIntegrante,
+  consultarIntegrantes,
+  eliminarIntegrante,
+};
