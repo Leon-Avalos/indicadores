@@ -11,11 +11,7 @@ router.get("/investigador", (req, res) => {
     .consultarInvestigadores()
     .then((respuestaDB) => {
       let registros = respuestaDB.rows;
-      res.send({
-        ok: true,
-        info: registros,
-        mensaje: "Investigadores consultados",
-      });
+      res.send(registros);
     })
     .catch((error) => {
       res.send(error);

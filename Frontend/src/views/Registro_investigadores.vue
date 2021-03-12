@@ -162,9 +162,9 @@ export default {
       axios
         .get("http://localhost:3001/investigador")
         .then((result) => {
-          this.investigadores.push(result.data.info);
-          console.log(result.data.info);
-          //console.log(this.investigadores);
+          this.investigadores = result.data;
+          //console.log(result.data.info);
+          console.log(this.investigadores);
         });
     },
     crearInvestigador: function () {

@@ -6,7 +6,7 @@ class ServicioPG {
       user: "postgres",
       host: "localhost",
       database: "ipm",
-      password: "",
+      password: "Inmortal20",
       port: 5432,
     });
   }
