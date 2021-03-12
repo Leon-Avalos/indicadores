@@ -22,10 +22,6 @@
             <textarea v-model="descripcionEspacio" class="form-control" id="inputDescripciónEspacioTrabajo" rows="3" required></textarea>
             <div class="invalid-feedback"> Ingrese una descripción basica del espacio de proyecto </div>
           </div>
-          <div>
-            <b-form-datepicker v-model="value" :min="min" :max="max" locale="en"></b-form-datepicker>
-          </div>
-
           <div class="mb-3">
             <input type="date" v-model="fecha" name="Fecha"  class="form-control" id="" required>
             <div class="invalid-feedback"> Ingrese fecha de culminación del proyecto </div>
