@@ -10,43 +10,93 @@
     />
     <br />
     <div class="container">
-
       <section class="form">
         <form class="was-validated">
-
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputNombreInvestigador">Nombre</label>
-              <input v-model="nombre" type="text" class="form-control" id="inputNombreInvestigador" placeholder="Nombre" required>
-              <div class="invalid-feedback"> Ingrese el nombre del investigador </div>
+              <input
+                v-model="nombre"
+                type="text"
+                class="form-control"
+                id="inputNombreInvestigador"
+                placeholder="Nombre"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese el nombre del investigador
+              </div>
             </div>
             <div class="form-group col-md-6">
               <label for="inputApellidoInvestigador">Apellido</label>
-              <input v-model="apellido" type="text" class="form-control" id="inputApellidoInvestigador" placeholder="Apellido" required>
-              <div class="invalid-feedback"> Ingrese el apellido del investigador </div>
+              <input
+                v-model="apellido"
+                type="text"
+                class="form-control"
+                id="inputApellidoInvestigador"
+                placeholder="Apellido"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese el apellido del investigador
+              </div>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCedulaInvestigador">Cedula</label>
-              <input v-model="cedula" type="int" class="form-control" id="inputCedulaInvestigador"  placeholder="Cedula" required>
-              <div class="invalid-feedback"> Ingrese la cedula del investigador </div>
+              <input
+                v-model="cedula"
+                type="int"
+                class="form-control"
+                id="inputCedulaInvestigador"
+                placeholder="Cedula"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese la cedula del investigador
+              </div>
             </div>
             <div class="form-group col-md-6">
               <label for="inputCorreoInvestigador">Correo</label>
-              <input v-model="correo" type="email" class="form-control" id="inputCorreoInvestigador" placeholder="Correo" required>
-              <div class="invalid-feedback"> Ingrese el correo del investigador </div>
+              <input
+                v-model="correo"
+                type="email"
+                class="form-control"
+                id="inputCorreoInvestigador"
+                placeholder="Correo"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese el correo del investigador
+              </div>
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" required>
-            <div class="invalid-feedback"> Ingrese la contraseña del investigador </div>
+            <label for="exampleInputPassword1" class="form-label"
+              >Contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="Contraseña"
+              required
+            />
+            <div class="invalid-feedback">
+              Ingrese la contraseña del investigador
+            </div>
           </div>
 
-          <button type="submit" @click.prevent="crearInvestigador" class="btn btn-outline-success">Registrar</button>
+          <button
+            type="submit"
+            @click.prevent="crearInvestigador"
+            class="btn btn-outline-success"
+          >
+            Registrar
+          </button>
         </form>
       </section>
 
@@ -70,6 +120,7 @@
             >
               <td>{{ investigador.cedula }}</td>
               <td>{{ investigador.nombre }}</td>
+              <td>{{ investigador.apellido }} </td>
               <td>{{ investigador.correo }}</td>
             </tr>
           </tbody>
@@ -82,7 +133,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   name: "Home",
@@ -102,14 +153,18 @@ export default {
     investigadores: [],
   }),
 
-  created: () => {
-    axios.get('https://investigadores.free.beeceptor.com/investigadores').then(result => {
-      this.investigadores.push(result.data);
-      console.table(result.data)
-    })
-    
+  created: function() {
+    this.obtenerInvestigadores();
   },
   methods: {
+    obtenerInvestigadores: function() {
+      axios
+        .get("https://researcherlist.free.beeceptor.com/researchers")
+        .then((result) => {
+          this.investigadores.push(result.data);
+          console.log(this.investigadores)
+        });
+    },
     crearInvestigador: function () {
       this.validarFormulario();
       this.investigadores.push({
@@ -119,7 +174,6 @@ export default {
         correo: this.correo,
         contraseña: this.contraseña,
       });
-      console.log(this.investigadores);
     },
 
     validarFormulario: function () {
