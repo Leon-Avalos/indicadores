@@ -47,7 +47,7 @@
             <div class="invalid-feedback"> Ingrese fecha de culminación del compromiso </div>
           </div>
 
-          <button type="submit" @click="crearCompromiso" class="btn btn-outline-success">Registrar</button>
+          <button type="submit" @click.prevent="crearCompromiso" class="btn btn-outline-success">Registrar</button>
         </form>
 
       <section class="data">
@@ -92,7 +92,7 @@ export default {
     compromisos: []
   }),
   methods: {
-    crearInvestigador: function() {
+    crearCompromiso: function() {
       this.compromisos.push({
         nombreEspacioDeTrabajo: this.nombreEspacioDeTrabajo,
         nombreInvestigador: this.nombreInvestigador,

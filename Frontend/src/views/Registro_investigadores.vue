@@ -46,7 +46,7 @@
             <div class="invalid-feedback"> Ingrese la contraseña del investigador </div>
           </div>
 
-          <button type="submit" @click.prevent="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
+          <button type="submit" @click.prevent="crearInvestigador" class="btn btn-outline-success">Registrar</button>
         </form>
       </section>
 

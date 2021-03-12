@@ -30,7 +30,7 @@
               <div class="invalid-feedback">Ingrese la cedula del investigador</div>
             </div>
             <div class="col-auto">
-              <button type="submit" @click="agregarInvestigador" class="btn btn-outline-success mb-3" >Registrar en el espacio de trabajo</button>
+              <button type="submit" @click.prevent="agregarInvestigador" class="btn btn-outline-success mb-3" >Registrar en el espacio de trabajo</button>
             </div>
           </div>
         </form>
@@ -50,7 +50,7 @@
               </tr>
             </thead>
             <tbody>
-              <!-- TODO: Renderizar integrantes de el espacio seleccionado-->
+              <!-- Renderizar integrantes de el espacio seleccionado-->
             </tbody>
           </table>
       </section>
