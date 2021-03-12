@@ -46,6 +46,11 @@
             <div class="invalid-feedback">Ingresa la descripcion detallada del compromiso</div>
           </div>
 
+          <div class="mb-3">
+            <input type="date" name="Fecha"  class="form-control" id="" required>
+            <div class="invalid-feedback"> Ingrese fecha de culminación del compromiso </div>
+          </div>
+
           <button type="submit" @click="crearCompromiso" class="btn btn-outline-success">Registrar</button>
         </form>
 

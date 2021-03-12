@@ -1,8 +1,9 @@
 <template>
   <div id="espacio_trabajo" class="home">
     <!-- <img alt="Vue logo" src="../static/logo.png"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <HelloWorld msg="Registro de Espacio de trabajo" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    
     <br>
    
     <div class="container">
@@ -20,6 +21,14 @@
             <label for="inputDescripciónEspacioTrabajo" class="form-label">Descripción espacio</label>
             <textarea class="form-control" id="inputDescripciónEspacioTrabajo" rows="3" required></textarea>
             <div class="invalid-feedback"> Ingrese una descripción basica del espacio de proyecto </div>
+          </div>
+          <div>
+            <b-form-datepicker v-model="value" :min="min" :max="max" locale="en"></b-form-datepicker>
+          </div>
+
+          <div class="mb-3">
+            <input type="date" name="Fecha"  class="form-control" id="" required>
+            <div class="invalid-feedback"> Ingrese fecha de culminación del proyecto </div>
           </div>
 
           <button type="submit" @click="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
@@ -63,6 +72,7 @@ export default {
     nombreEspacio: '',
     descripcionEspacio: '',
     espaciosDeTrabajo: []
+
   }),
   methods: {
     crearEspacioDeTrabajo: function() {
