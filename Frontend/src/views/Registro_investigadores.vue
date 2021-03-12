@@ -120,7 +120,7 @@
             >
               <td>{{ investigador.cedula }}</td>
               <td>{{ investigador.nombre }}</td>
-              <td>{{ investigador.apellido }} </td>
+              <td>{{ investigador.apellido }}</td>
               <td>{{ investigador.correo }}</td>
             </tr>
           </tbody>
@@ -153,20 +153,32 @@ export default {
     investigadores: [],
   }),
 
-  created: function() {
+  created: function () {
     this.obtenerInvestigadores();
   },
   methods: {
-    obtenerInvestigadores: function() {
+    obtenerInvestigadores: function () {
       axios
         .get("https://researcherlist.free.beeceptor.com/researchers")
         .then((result) => {
           this.investigadores.push(result.data);
-          console.log(this.investigadores)
+          console.log(this.investigadores);
         });
     },
     crearInvestigador: function () {
       this.validarFormulario();
+      //Construyo un objeto clave valor con los models declarados en el data
+      let testPost = {
+        nombre: this.nombre,
+        apellido: this.apellido,
+        cedula: this.cedula,
+        correo: this.correo
+      };
+      // Realizo una peticion de tipo POST a una API falsa (proposito pruebas) y muestro por consola el resultado
+      axios.post('https://testpost.free.beeceptor.com/postTest', testPost).then((result) => {
+        console.log(result.data)
+        //TODO: Añadir logica para manejar la respuesta
+      })
       this.investigadores.push({
         cedula: this.cedula,
         nombre: this.nombre,
