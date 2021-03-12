@@ -103,7 +103,8 @@ export default {
   }),
 
   created: () => {
-    axios.get('https://researchers.free.beeceptor.com/researchers').then(result => {
+    axios.get('https://investigadores.free.beeceptor.com/investigadores').then(result => {
+      this.investigadores.push(result.data);
       console.table(result.data)
     })
     
