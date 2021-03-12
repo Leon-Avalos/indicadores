@@ -46,7 +46,7 @@
             <div class="invalid-feedback"> Ingrese la contraseña del investigador </div>
           </div>
 
-          <button type="submit" @click="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
+          <button type="submit" @click.prevent="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
         </form>
       </section>
 
@@ -82,6 +82,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+import axios from 'axios';
 
 export default {
   name: "Home",
@@ -100,6 +101,13 @@ export default {
     contraseña: "",
     investigadores: [],
   }),
+
+  created: () => {
+    axios.get('https://researchers.free.beeceptor.com/researchers').then(result => {
+      console.table(result.data)
+    })
+    
+  },
   methods: {
     crearInvestigador: function () {
       this.validarFormulario();
