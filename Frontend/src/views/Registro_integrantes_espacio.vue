@@ -47,8 +47,7 @@
               <tr>
                 <th>Cedula</th>
                 <th>Nombre</th>
-                <th>Rol Investigador</th>
-                <th>Eliminar</th>
+                
               </tr>
             </thead>
             <tbody>

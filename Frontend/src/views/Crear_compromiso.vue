@@ -51,13 +51,13 @@
 
       <section class="data">
         <caption >
-          Espacios
+          Compromisos
         </caption>
           <table class="table">
             <thead>
               <tr>
                 <th>Codigo</th>
-                <th>Nombre espacio</th>
+                <th>Nombre compromiso</th>
                 <th>Descripción</th>
               </tr>
             </thead>
