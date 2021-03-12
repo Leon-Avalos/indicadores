@@ -16,7 +16,7 @@
             <div class="form-group col-md-6">
               <label for="inputNombreInvestigador">Nombre</label>
               <input
-                v-model="nombre"
+                v-model="first_name"
                 type="text"
                 class="form-control"
                 id="inputNombreInvestigador"
@@ -30,7 +30,7 @@
             <div class="form-group col-md-6">
               <label for="inputApellidoInvestigador">Apellido</label>
               <input
-                v-model="apellido"
+                v-model="last_name"
                 type="text"
                 class="form-control"
                 id="inputApellidoInvestigador"
@@ -47,7 +47,7 @@
             <div class="form-group col-md-6">
               <label for="inputCedulaInvestigador">Cedula</label>
               <input
-                v-model="cedula"
+                v-model="researcher_document"
                 type="int"
                 class="form-control"
                 id="inputCedulaInvestigador"
@@ -61,7 +61,7 @@
             <div class="form-group col-md-6">
               <label for="inputCorreoInvestigador">Correo</label>
               <input
-                v-model="correo"
+                v-model="email"
                 type="email"
                 class="form-control"
                 id="inputCorreoInvestigador"
@@ -81,6 +81,7 @@
             <input
               type="password"
               class="form-control"
+              v-model="password"
               id="exampleInputPassword1"
               placeholder="Contraseña"
               required
@@ -116,12 +117,12 @@
           <tbody>
             <tr
               v-for="investigador in investigadores"
-              :key="investigador.cedula"
+              :key="investigador.researcher_document"
             >
-              <td>{{ investigador.cedula }}</td>
-              <td>{{ investigador.nombre }}</td>
-              <td>{{ investigador.apellido }}</td>
-              <td>{{ investigador.correo }}</td>
+              <td>{{ investigador.researcher_document }}</td>
+              <td>{{ investigador.first_name }}</td>
+              <td>{{ investigador.last_name }}</td>
+              <td>{{ investigador.email }}</td>
             </tr>
           </tbody>
         </table>
@@ -141,15 +142,15 @@ export default {
     HelloWorld,
   },
   data: () => ({
-    cedula: "",
+    researcher_document: "",
     cedulaValida: true,
-    nombre: "",
+    first_name: "",
     nombreValido: true,
-    apellido: "",
+    last_name: "",
     apellidoValido: true,
-    correo: "",
+    email: "",
     correoValido: true,
-    contraseña: "",
+    password: "",
     investigadores: [],
   }),
 
@@ -159,46 +160,48 @@ export default {
   methods: {
     obtenerInvestigadores: function () {
       axios
-        .get("https://researcherlist.free.beeceptor.com/researchers")
+        .get("http://localhost:3001/investigador")
         .then((result) => {
-          this.investigadores.push(result.data);
-          console.log(this.investigadores);
+          this.investigadores.push(result.data.info);
+          console.log(result.data.info);
+          //console.log(this.investigadores);
         });
     },
     crearInvestigador: function () {
       this.validarFormulario();
       //Construyo un objeto clave valor con los models declarados en el data
       let testPost = {
-        nombre: this.nombre,
-        apellido: this.apellido,
-        cedula: this.cedula,
-        correo: this.correo
+        first_name: this.first_name,
+        last_name: this.last_name,
+        researcher_document: this.researcher_document,
+        email: this.email,
+        password: this.password
       };
       // Realizo una peticion de tipo POST a una API falsa (proposito pruebas) y muestro por consola el resultado
-      axios.post('https://testpost.free.beeceptor.com/postTest', testPost).then((result) => {
+      axios.post('http://localhost:3001/investigador', testPost).then((result) => {
         console.log(result.data)
-        //TODO: Añadir logica para manejar la respuesta
+        // Añadir logica para manejar la respuesta
       })
       this.investigadores.push({
-        cedula: this.cedula,
-        nombre: this.nombre,
-        apellido: this.apellido,
-        correo: this.correo,
-        contraseña: this.contraseña,
+        researcher_document: this.researcher_document,
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        password: this.password,
       });
     },
 
     validarFormulario: function () {
-      if (!this.nombre) {
+      if (!this.first_name) {
         this.nombreValido = false;
       }
-      if (!this.apellido) {
+      if (!this.last_name) {
         this.apellidoValido = false;
       }
-      if (!this.cedula) {
+      if (!this.researcher_document) {
         this.cedulaValida = false;
       }
-      if (!this.correo || !this.validarCorreo(this.correo)) {
+      if (!this.email || !this.validarCorreo(this.email)) {
         this.correoValido = false;
       }
     },
