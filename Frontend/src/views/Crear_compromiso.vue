@@ -83,23 +83,21 @@ export default {
     HelloWorld,
   },
   data: () => ({
-    cedula: '',
-    nombre: '',
-    apellido: '',
-    correo: '',
-    contraseña: '',
-    investigadores: []
+    nombreEspacioDeTrabajo: '',
+    nombreInvestigador: '',
+    nombreCompromiso: '',
+    descripcionCompromiso: '',
+    compromisos: []
   }),
   methods: {
     crearInvestigador: function() {
-      this.investigadores.push({
-        cedula: this.cedula,
-        nombre: this.nombre,
-        apellido: this.apellido,
-        correo: this.correo,
-        contraseña: this.contraseña,
+      this.compromisos.push({
+        nombreEspacioDeTrabajo: this.nombreEspacioDeTrabajo,
+        nombreInvestigador: this.nombreInvestigador,
+        nombreCompromiso: this.nombreCompromiso,
+        descripcionCompromiso: this.descripcionCompromiso,
       });
-      console.log(this.investigadores)
+      console.log(this.compromisos)
     }
   }
 };

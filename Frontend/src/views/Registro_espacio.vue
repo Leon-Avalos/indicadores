@@ -65,7 +65,7 @@ export default {
     espaciosDeTrabajo: []
   }),
   methods: {
-    crearInvestigador: function() {
+    crearEspacioDeTrabajo: function() {
       this.espaciosDeTrabajo.push({
         nombreEspacio: this.nombreEspacio,
         descripcionEspacio: this.descripcionEspacio

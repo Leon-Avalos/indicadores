@@ -31,7 +31,7 @@
               <div class="invalid-feedback">Ingrese la cedula del investigador</div>
             </div>
             <div class="col-auto">
-              <button type="submit" @click="registrarEspacioTrabajo" class="btn btn-outline-success mb-3" >Registrar en el espacio de trabajo</button>
+              <button type="submit" @click="agregarInvestigador" class="btn btn-outline-success mb-3" >Registrar en el espacio de trabajo</button>
             </div>
           </div>
         </form>
@@ -77,7 +77,7 @@ export default {
     options: ['', '', '', '', '']
   }),
   methods: {
-    crearInvestigador: function() {
+    agregarInvestigador: function() {
       this.investigadoresEspacioDeTrabajo.push({
         nombreEspacioDeTrabajo: this.nombreEspacioDeTrabajo,
         cedulaInvestigador: this.cedulaInvestigador
