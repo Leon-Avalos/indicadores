@@ -6,26 +6,36 @@
     <br>
     <p></p>
     <div class="container">
-      <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
-      <select class="form-select" aria-label="Default select example" required>
-        <option selected>Selecciona un espacio de trabajo</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-      <br>
-      <form class="row g-3">
-        <div class="col-auto">
-          <label>Cedula investigador</label>
-        </div>
-        <div class="col-auto">
-          <label for="inputCedulaInvestigador" class="visually-hidden">Cedula investigador</label>
-          <input type="int" class="form-control" id="inputCedulaInvestigador" placeholder="Cedula" required>
-        </div>
-        <div class="col-auto">
-          <button type="submit" @click.prevent="registrarEspacioTrabajo" class="btn btn-outline-success mb-3" >Registrar en el espacio de trabajo</button>
-        </div>
-      </form>
+      
+      <section class="form">
+        <form class="was-validated">
+
+          <div class="mb-3">
+            <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
+            <select class="form-select"  aria-label="selectespacio" id="selectEspacioTrabajo" required>
+              <option value="">Selecciona un espacio de trabajo</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+            <div class="invalid-feedback">Selecciona un espacio de trabajo</div>
+          </div>
+          <br>
+          <div class="form-row">
+            <div class="col-auto">
+              <label>Cedula investigador</label>
+            </div>
+            <div class="col-auto">
+              <label for="inputCedulaInvestigador" class="visually-hidden">Cedula investigador</label>
+              <input type="int" class="form-control" id="inputCedulaInvestigador" placeholder="Cedula" required>
+            </div>
+            <div class="col-auto">
+              <button type="submit" @click="registrarEspacioTrabajo" class="btn btn-outline-success mb-3" >Registrar en el espacio de trabajo</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
 
       <section class="data">
         <caption >
@@ -60,24 +70,18 @@ export default {
     HelloWorld,
   },
   data: () => ({
-    cedula: '',
-    nombre: '',
-    apellido: '',
-    correo: '',
-    contraseña: '',
-    investigadores: [],
-    options: ['Apple', 'Banana', 'Grape', 'Kiwi', 'Orange']
+    nombreEspacioDeTrabajo: '',
+    cedulaInvestigador: '',
+    investigadoresEspacioDeTrabajo: [],
+    options: ['', '', '', '', '']
   }),
   methods: {
     crearInvestigador: function() {
-      this.investigadores.push({
-        cedula: this.cedula,
-        nombre: this.nombre,
-        apellido: this.apellido,
-        correo: this.correo,
-        contraseña: this.contraseña,
+      this.investigadoresEspacioDeTrabajo.push({
+        nombreEspacioDeTrabajo: this.nombreEspacioDeTrabajo,
+        cedulaInvestigador: this.cedulaInvestigador
       });
-      console.log(this.investigadores)
+      console.log(this.investigadoresEspacioDeTrabajo)
     }
   }
 };

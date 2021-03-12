@@ -6,19 +6,23 @@
     <br>
    
     <div class="container">
+
       <section class="form">
-        <form>
+        <form class="was-validated">
+
           <div class="mb-3">
               <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
-              <input v-model="nombre" type="text" class="form-control" id="inputNombreEspacioTrabajo" placeholder="Nombre espacio de trabajo" required/> 
+              <input v-model="nombre" type="text" class="form-control" id="inputNombreEspacioTrabajo" placeholder="Nombre espacio de trabajo" required> 
+              <div class="invalid-feedback"> Ingrese el nombre del espacio de trabajo del proyecto </div>
           </div>
 
           <div class="mb-3">
             <label for="inputDescripciónEspacioTrabajo" class="form-label">Descripción espacio</label>
             <textarea class="form-control" id="inputDescripciónEspacioTrabajo" rows="3" required></textarea>
+            <div class="invalid-feedback"> Ingrese una descripción basica del espacio de proyecto </div>
           </div>
 
-          <button type="submit" @click.prevent="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
+          <button type="submit" @click="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
         </form>
       </section>
 
@@ -56,23 +60,17 @@ export default {
     HelloWorld,
   },
   data: () => ({
-    cedula: '',
-    nombre: '',
-    apellido: '',
-    correo: '',
-    contraseña: '',
-    investigadores: []
+    nombreEspacio: '',
+    descripcionEspacio: '',
+    espaciosDeTrabajo: []
   }),
   methods: {
     crearInvestigador: function() {
-      this.investigadores.push({
-        cedula: this.cedula,
-        nombre: this.nombre,
-        apellido: this.apellido,
-        correo: this.correo,
-        contraseña: this.contraseña,
+      this.espaciosDeTrabajo.push({
+        nombreEspacio: this.nombreEspacio,
+        descripcionEspacio: this.descripcionEspacio
       });
-      console.log(this.investigadores)
+      console.log(this.espaciosDeTrabajo)
     }
   }
 };

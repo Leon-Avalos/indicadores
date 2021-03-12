@@ -6,35 +6,47 @@
     <br>
    
     <div class="container">
-      <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
-      <select class="form-select" aria-label="Default select example" required>
-        <option selected>Selecciona un espacio de trabajo</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-      <label for="inputNombreDeInvestigador" class="form-label">Nombre del investigador</label>
-      <select class="form-select" aria-label="Default select example" required>
-        <option selected>Selecciona un investigador</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-      <br>
-      <hr>
-      <br>
-        <form>
-          <div class="mb-3">
-              <label for="inputNombreCompromiso" class="form-label">Nombre del compromiso</label>
-              <input v-model="nombre" type="text" class="form-control" id="inputNombreCompromiso" placeholder="Nombre del compromiso" required> 
-          </div>
+      <form class="was-validated">
+
+        <div class="mb-3">
+          <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
+          <select class="form-select"  aria-label="selectespacio" id="selectEspacioTrabajo" required>
+            <option value="">Selecciona un espacio de trabajo</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <div class="invalid-feedback">Selecciona un espacio de trabajo</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="inputNombreInvestigador" class="form-label">Nombre investigador</label>
+          <select class="form-select"  aria-label="selectinvestigador" id="inputNombreInvestigador" required>
+            <option value="">Selecciona un investigador para el compromiso</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <div class="invalid-feedback">Selecciona un investigador para el compromiso</div>
+        </div>
+
+        <br>
+        <hr>
+        <br>
+        
+        <div class="mb-3">
+          <label for="inputNombreCompromiso" class="form-label">Nombre del compromiso</label>
+          <input v-model="nombre" type="text" class="form-control" id="inputNombreCompromiso" placeholder="Nombre del compromiso" required> 
+          <div class="invalid-feedback">ingresa el nombre de un compromiso</div>
+        </div>
 
           <div class="mb-3">
             <label for="inputDescripciónCompromiso" class="form-label">Descripción compromiso</label>
             <textarea type="text" class="form-control" id="inputDescripciónCompromiso" rows="3" required></textarea>
+            <div class="invalid-feedback">ingresa la descripcion detallada del compromiso</div>
           </div>
 
-          <button type="submit" class="btn btn-outline-success">Registrar</button>
+          <button type="submit" @click="crearCompromiso" class="btn btn-outline-success">Registrar</button>
         </form>
 
       <section class="data">
