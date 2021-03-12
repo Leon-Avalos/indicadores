@@ -10,86 +10,46 @@
     />
     <br />
     <div class="container">
+
       <section class="form">
-        <form>
+        <form class="was-validated">
+
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputEmail4">Nombre</label>
-              <input
-                v-model="nombre"
-                type="text"
-                class="form-control"
-                id="inputEmail4"
-                placeholder="Nombre"
-                required
-              />
-              <p class="h-25 text-danger" v-show="!nombreValido">
-                El nombre es requerido
-              </p>
+              <label for="inputNombreInvestigador">Nombre</label>
+              <input v-model="nombre" type="text" class="form-control" id="inputNombreInvestigador" placeholder="Nombre" required>
+              <div class="invalid-feedback"> Ingrese el nombre del investigador </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="inputPassword4">Apellido</label>
-              <input
-                v-model="apellido"
-                type="text"
-                class="form-control"
-                id="apellido"
-                placeholder="Apellido"
-                required
-              />
-              <p class="h-25 text-danger" v-show="!apellidoValido">
-                El apellido es requerido
-              </p>
+              <label for="inputApellidoInvestigador">Apellido</label>
+              <input v-model="apellido" type="text" class="form-control" id="inputApellidoInvestigador" placeholder="Apellido" required>
+              <div class="invalid-feedback"> Ingrese el apellido del investigador </div>
             </div>
           </div>
+
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputEmail4">Cedula</label>
-              <input
-                v-model="cedula"
-                type="text"
-                class="form-control"
-                id="cedula"
-                placeholder="Cedula"
-                required
-              />
+              <label for="inputCedulaInvestigador">Cedula</label>
+              <input v-model="cedula" type="int" class="form-control" id="inputCedulaInvestigador"  placeholder="Cedula" required>
+              <div class="invalid-feedback"> Ingrese la cedula del investigador </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="inputPassword4">Correo</label>
-              <input
-                v-model="correo"
-                type="email"
-                class="form-control"
-                id="email"
-                placeholder="Correo"
-                required
-              />
-              <p class="h-25 text-danger" v-show="!correoValido">
-                El correo no es valido
-              </p>
+              <label for="inputCorreoInvestigador">Correo</label>
+              <input v-model="correo" type="email" class="form-control" id="inputCorreoInvestigador" placeholder="Correo" required>
+              <div class="invalid-feedback"> Ingrese el correo del investigador </div>
             </div>
           </div>
+
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Contraseña</label
-            >
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Contraseña"
-              required
-            />
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" required>
+            <div class="invalid-feedback"> Ingrese la contraseña del investigador </div>
           </div>
-          <button
-            type="submit"
-            @click.prevent="crearInvestigador"
-            class="btn btn-outline-success"
-          >
-            Registrar
-          </button>
+
+          <button type="submit" @click="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
         </form>
       </section>
+
       <section class="data">
         <caption>
           Investigadores
@@ -99,6 +59,7 @@
             <tr>
               <th>Cedula</th>
               <th>Nombre</th>
+              <th>Apellido</th>
               <th>Correo</th>
             </tr>
           </thead>

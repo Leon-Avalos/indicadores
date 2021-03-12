@@ -26,17 +26,15 @@
         <form>
           <div class="mb-3">
               <label for="inputNombreCompromiso" class="form-label">Nombre del compromiso</label>
-              <input v-model="nombre" type="text" class="form-control" id="inputNombreCompromiso" placeholder="Nombre del compromiso" required/> 
+              <input v-model="nombre" type="text" class="form-control" id="inputNombreCompromiso" placeholder="Nombre del compromiso" required> 
           </div>
 
           <div class="mb-3">
             <label for="inputDescripciónCompromiso" class="form-label">Descripción compromiso</label>
-            <textarea class="form-control" id="inputDescripciónCompromiso" rows="3" required></textarea>
+            <textarea type="text" class="form-control" id="inputDescripciónCompromiso" rows="3" required></textarea>
           </div>
 
-          
-
-          <button type="submit" @click.prevent="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
+          <button type="submit" class="btn btn-outline-success">Registrar</button>
         </form>
 
       <section class="data">
