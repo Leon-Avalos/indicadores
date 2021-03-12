@@ -37,13 +37,13 @@
         <div class="mb-3">
           <label for="inputNombreCompromiso" class="form-label">Nombre del compromiso</label>
           <input v-model="nombre" type="text" class="form-control" id="inputNombreCompromiso" placeholder="Nombre del compromiso" required> 
-          <div class="invalid-feedback">ingresa el nombre de un compromiso</div>
+          <div class="invalid-feedback">Ingresa el nombre de un compromiso</div>
         </div>
 
           <div class="mb-3">
             <label for="inputDescripciónCompromiso" class="form-label">Descripción compromiso</label>
             <textarea type="text" class="form-control" id="inputDescripciónCompromiso" rows="3" required></textarea>
-            <div class="invalid-feedback">ingresa la descripcion detallada del compromiso</div>
+            <div class="invalid-feedback">Ingresa la descripcion detallada del compromiso</div>
           </div>
 
           <button type="submit" @click="crearCompromiso" class="btn btn-outline-success">Registrar</button>

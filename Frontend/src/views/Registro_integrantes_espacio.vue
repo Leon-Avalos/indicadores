@@ -6,7 +6,7 @@
     <br>
     <p></p>
     <div class="container">
-      
+
       <section class="form">
         <form class="was-validated">
 
@@ -28,6 +28,7 @@
             <div class="col-auto">
               <label for="inputCedulaInvestigador" class="visually-hidden">Cedula investigador</label>
               <input type="int" class="form-control" id="inputCedulaInvestigador" placeholder="Cedula" required>
+              <div class="invalid-feedback">Ingrese la cedula del investigador</div>
             </div>
             <div class="col-auto">
               <button type="submit" @click="registrarEspacioTrabajo" class="btn btn-outline-success mb-3" >Registrar en el espacio de trabajo</button>
