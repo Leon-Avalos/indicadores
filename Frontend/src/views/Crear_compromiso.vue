@@ -10,22 +10,18 @@
 
         <div class="mb-3">
           <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
-          <select class="form-select"  aria-label="selectespacio" id="selectEspacioTrabajo" required>
+          <select v-model="nombreEspacioDeTrabajo" class="form-select"  aria-label="selectespacio" id="selectEspacioTrabajo" required>
             <option value="">Selecciona un espacio de trabajo</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            
           </select>
           <div class="invalid-feedback">Selecciona un espacio de trabajo</div>
         </div>
 
         <div class="mb-3">
           <label for="inputNombreInvestigador" class="form-label">Nombre investigador</label>
-          <select class="form-select"  aria-label="selectinvestigador" id="inputNombreInvestigador" required>
+          <select v-model="nombreInvestigador" class="form-select"  aria-label="selectinvestigador" id="inputNombreInvestigador" required>
             <option value="">Selecciona un investigador para el compromiso</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            
           </select>
           <div class="invalid-feedback">Selecciona un investigador para el compromiso</div>
         </div>
@@ -36,18 +32,18 @@
         
         <div class="mb-3">
           <label for="inputNombreCompromiso" class="form-label">Nombre del compromiso</label>
-          <input v-model="nombre" type="text" class="form-control" id="inputNombreCompromiso" placeholder="Nombre del compromiso" required> 
+          <input v-model="nombreCompromiso" type="text" class="form-control" id="inputNombreCompromiso" placeholder="Nombre del compromiso" required> 
           <div class="invalid-feedback">Ingresa el nombre de un compromiso</div>
         </div>
 
           <div class="mb-3">
             <label for="inputDescripciónCompromiso" class="form-label">Descripción compromiso</label>
-            <textarea type="text" class="form-control" id="inputDescripciónCompromiso" rows="3" required></textarea>
+            <textarea v-model="descripcionCompromiso" type="text" class="form-control" id="inputDescripciónCompromiso" rows="3" required></textarea>
             <div class="invalid-feedback">Ingresa la descripcion detallada del compromiso</div>
           </div>
 
           <div class="mb-3">
-            <input type="date" name="Fecha"  class="form-control" id="" required>
+            <input v-model="fechaCompromiso" type="date" name="Fecha"  class="form-control" id="" required>
             <div class="invalid-feedback"> Ingrese fecha de culminación del compromiso </div>
           </div>
 
@@ -88,10 +84,11 @@ export default {
     HelloWorld,
   },
   data: () => ({
-    nombreEspacioDeTrabajo: '',
-    nombreInvestigador: '',
+    nombreEspacioDeTrabajo: [],
+    nombreInvestigador: [],
     nombreCompromiso: '',
     descripcionCompromiso: '',
+    fechaCompromiso: '',
     compromisos: []
   }),
   methods: {

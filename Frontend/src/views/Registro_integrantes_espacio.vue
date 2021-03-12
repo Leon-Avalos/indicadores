@@ -12,11 +12,10 @@
 
           <div class="mb-3">
             <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
-            <select class="form-select"  aria-label="selectespacio" id="selectEspacioTrabajo" required>
+            <select v-model="nombreEspacioDeTrabajo" class="form-select"  aria-label="selectespacio" id="selectEspacioTrabajo" required>
               <option value="">Selecciona un espacio de trabajo</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              
+
             </select>
             <div class="invalid-feedback">Selecciona un espacio de trabajo</div>
           </div>
@@ -27,7 +26,7 @@
             </div>
             <div class="col-auto">
               <label for="inputCedulaInvestigador" class="visually-hidden">Cedula investigador</label>
-              <input type="int" class="form-control" id="inputCedulaInvestigador" placeholder="Cedula" required>
+              <input v-model="cedulaInvestigador" type="int" class="form-control" id="inputCedulaInvestigador" placeholder="Cedula" required>
               <div class="invalid-feedback">Ingrese la cedula del investigador</div>
             </div>
             <div class="col-auto">
@@ -70,7 +69,7 @@ export default {
     HelloWorld,
   },
   data: () => ({
-    nombreEspacioDeTrabajo: '',
+    nombreEspacioDeTrabajo: [],
     cedulaInvestigador: '',
     investigadoresEspacioDeTrabajo: [],
     options: ['', '', '', '', '']
