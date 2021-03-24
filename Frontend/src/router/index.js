@@ -27,6 +27,11 @@ const routes = [
     path: '/crear_compromiso',
     name: 'Crear_compromiso',
     component: () => import( '../views/Crear_compromiso.vue')
+  },
+  {
+    path: '/anexar_archivos',
+    name: 'Anexar Archivos',
+    component: () => import('../views/Anexar_Archivos.vue')
   }
 ]
 
