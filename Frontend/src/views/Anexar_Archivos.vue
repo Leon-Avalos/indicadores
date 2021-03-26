@@ -5,18 +5,19 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="cedula">Cedula</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" name="cedula" id="cedula" />
+          <input c class="form-control" type="text" name="cedula" id="cedula" />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="nombre">Nombre</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" name="nombre" id="nombre" />
+          <input v-model="nombre" class="form-control" type="text" name="nombre" id="nombre" />
         </div>
       </div>
       <div class="form-group row">
         <label for="descripcion">Descripción</label>
         <textarea
+          v-model="descripcion"
           class="form-control"
           name="descripcion"
           id="descripcion"
@@ -42,7 +43,12 @@
 <script>
 export default {
   name: "Anexar_Archivos",
-  data: () => ({}),
+  data: () => ({
+      cedula: '',
+      nombre: '',
+      descripcion: '',
+      archivo: ''
+  }),
 };
 </script>
 <style>
