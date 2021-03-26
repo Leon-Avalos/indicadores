@@ -7,7 +7,6 @@
    
     <div class="container">
       <form class="was-validated">
-
         <div class="mb-3">
           <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
           <select v-model="nombreEspacioDeTrabajo" class="form-select"  aria-label="selectespacio" id="selectEspacioTrabajo" required>
