@@ -66,4 +66,22 @@ router.delete("/integrante/:researcher_document", (req, res) => {
   }
 });
 
+/**
+ * Actualizar el rol de un integrante
+ */
+router.update("/integrante/rol/:researcher_document", (req, res) => {
+  let researcher_document = req.params.researcher_document;
+
+  if (researcher_document) {
+    _controlador
+      .asignarRol({ researcher_document })
+      .then((respuestaDB) => {
+        res.send({ ok: true, info: {}, mensaje: "Integrante eliminado" });
+      })
+      .catch((error) => {
+        res.send(error);
+      });
+  }
+});
+
 module.exports = router;

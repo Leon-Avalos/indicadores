@@ -63,9 +63,54 @@ let eliminarIntegrante = async ({ idresearcher_workspace }) => {
   return respuesta;
 };
 
+/**
+ * Validar la información del rol
+ * @param {*} rol Json del rol
+ */
+ let validarRol = (rol) => {
+  if (!rol) {
+    throw {
+      ok: false,
+      mensaje: "La información del rol es obligatoria.",
+    };
+  }
+  if (!rol.idresearcher_workspace) {
+      throw {
+          ok: false,
+          mensaje: "El código del espacio de trabajo es obligatorio." };
+    }
+  if (!rol.researcher_document) {
+  throw {
+      ok: false,
+      mensaje: "El documento del investigador es obligatorio." };
+  }
+  if (!rol.idrol) {
+      throw {
+          ok: false,
+          mensaje: "El código del rol es obligatorio." };
+      }  
+};
+/**
+* Método POST (UPDATE) para guardar en la base de datos un rol asignado a un investigador
+* @param {*} rol
+*/
+
+let asignarRol = async({idresearcher_workspace}, {idrole}) => {
+  let _servicio = new ServicioPg();
+  let sql = 
+  `UPDATE FROM public.researcher_workspace 
+  SET idrole = ${idrole}
+  WHERE idresearcher_workspace = ${idresearcher_workspace};`;
+
+  let respuesta = await _servicio.ejecutarSql(sql);
+  return respuesta;
+};
+
 module.exports = {
   validarIntegrante,
   guardarIntegrante,
   consultarIntegrantes,
   eliminarIntegrante,
+  validarRol,
+  asignarRol
 };
