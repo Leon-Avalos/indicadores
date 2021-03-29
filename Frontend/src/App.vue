@@ -29,6 +29,10 @@
   color: #2c3e50;
 }
 
+#nav a:hover {
+  color: #89bba4;
+}
+
 #nav a.router-link-exact-active {
   color: #42b983;
 }
