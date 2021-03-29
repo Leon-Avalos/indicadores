@@ -76,7 +76,6 @@ export default {
         nombreEspacioDeTrabajo: this.nombreEspacioDeTrabajo,
         cedulaInvestigador: this.cedulaInvestigador
       });
-      console.log(this.investigadoresEspacioDeTrabajo)
     }
   }
 };

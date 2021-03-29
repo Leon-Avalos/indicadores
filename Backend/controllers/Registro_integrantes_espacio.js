@@ -31,7 +31,6 @@ let validarIntegrante = (integrante) => {
  * @param {*} integrante
  */
 let guardarIntegrante = async (integrante) => {
-  console.log(integrante);
   let _servicio = new ServicioPg();
   let sql = `INSERT INTO public.researcher_workspace(
 	researcher_document, idworkspace)

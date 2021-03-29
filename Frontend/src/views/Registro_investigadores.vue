@@ -159,8 +159,6 @@ export default {
         .get("http://localhost:3001/investigador")
         .then((result) => {
           this.investigadores = result.data;
-          //console.log(result.data.info);
-          console.log(this.investigadores);
         });
     },
     crearInvestigador: function () {
@@ -175,16 +173,10 @@ export default {
       };
       // Realizo una peticion de tipo POST a una API falsa (proposito pruebas) y muestro por consola el resultado
       axios.post('http://localhost:3001/investigador', testPost).then((result) => {
-        console.log(result.data)
+        this.obtenerInvestigadores();
         // Añadir logica para manejar la respuesta
       })
-      this.investigadores.push({
-        researcher_document: this.researcher_document,
-        first_name: this.first_name,
-        last_name: this.last_name,
-        email: this.email,
-        password: this.password,
-      });
+      
     },
 
     validarFormulario: function () {
@@ -202,7 +194,7 @@ export default {
       }
     },
     validarCorreo: function (email) {
-      var regexEmail = /(.+)@(.+){2,}\.(.+){2,}/;
+      var regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
       return regexEmail.test(email.toLowerCase());
     },
   },

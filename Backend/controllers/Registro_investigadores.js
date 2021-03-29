@@ -43,7 +43,6 @@ let validarInvestigador = (investigador) => {
  * @param {*} investigador
  */
 let guardarInvestigador = async (investigador) => {
-  console.log(investigador);
   let _servicio = new ServicioPg();
   let sql = `INSERT INTO public.researcher(
 	researcher_document, first_name, last_name, email, password)

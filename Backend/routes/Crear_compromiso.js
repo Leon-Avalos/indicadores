@@ -11,7 +11,6 @@ router.get("/compromiso", (req, res) => {
     .consultarCompromisos()
     .then((respuestaDB) => {
       let registros = respuestaDB.rows;
-      console.log(registros);
       res.send({
         ok: true,
         info: registros,

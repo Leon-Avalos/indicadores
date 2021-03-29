@@ -35,7 +35,6 @@ let validarEspacioTrabajo = (espacioTrabajo) => {
  * @param {*} espacioTrabajo
  */
 let guardarEspacioTrabajo = async (espacioTrabajo) => {
-  console.log(espacioTrabajo);
   let _servicio = new ServicioPg();
   let sql = `INSERT INTO public.workspace(
 	workspace_name, description, due_date)

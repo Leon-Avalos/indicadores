@@ -98,7 +98,6 @@ export default {
         nombreCompromiso: this.nombreCompromiso,
         descripcionCompromiso: this.descripcionCompromiso,
       });
-      console.log(this.compromisos)
     }
   }
 };

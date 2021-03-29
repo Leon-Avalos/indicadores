@@ -48,7 +48,6 @@ let validarCompromiso = (compromiso) => {
  * @param {*} compromiso
  */
 let guardarCompromiso = async (compromiso) => {
-  console.log(compromiso);
   let _servicio = new ServicioPg();
   let sql = `
     INSERT INTO public.compromise(
@@ -72,9 +71,7 @@ let consultarCompromisos = async () => {
   let _servicio = new ServicioPg();
   let sql = `SELECT * FROM public.compromise;`;
 
-  console.log(sql);
   let respuesta = await _servicio.ejecutarSql(sql);
-  console.log(respuesta);
   return respuesta;
 };
 
