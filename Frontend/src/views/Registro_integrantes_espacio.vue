@@ -16,7 +16,7 @@
           <div class="invalid-feedback">Selecciona un espacio de trabajo</div>
         </div>
         <br>
-        <div class="form-row mb-3">
+        <div class="form-row mb-3" >
           <div class="col-auto">
             <label>Cedula investigador</label>
           </div>
