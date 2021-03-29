@@ -32,4 +32,17 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.form-row{
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.data{
+  margin-bottom: 60px;
+}
+
+#btnArchivo{
+  margin-bottom: 60px;
+}
 </style>
