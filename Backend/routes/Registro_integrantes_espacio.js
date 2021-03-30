@@ -69,12 +69,14 @@ router.delete("/integrante/:researcher_document", (req, res) => {
 /**
  * Actualizar el rol de un integrante
  */
-router.put("/integrante/rol/:researcher_document", (req, res) => {
+router.put("/integrante/:idrole/:researcher_document/:idworkspace", (req, res) => {
   let researcher_document = req.params.researcher_document;
+  let idworkspace = req.params.idworkspace;
+  let idrole = req.params.idrole
 
-  if (researcher_document) {
+  if (researcher_document && idworkspace) {
     _controlador
-      .asignarRol({ researcher_document })
+      .asignarRol(idrole, researcher_document, idworkspace)
       .then((respuestaDB) => {
         res.send({ ok: true, info: {}, mensaje: "Integrante actualizado" });
       })

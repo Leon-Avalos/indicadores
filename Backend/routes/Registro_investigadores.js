@@ -26,7 +26,7 @@ router.post("/investigador", (req, res) => {
     let info_investigador = req.body;
 
     _controlador.validarInvestigador(info_investigador);
-    
+
     _controlador
       .guardarInvestigador(info_investigador)
       .then((respuestaDB) => {
@@ -49,10 +49,9 @@ router.post("/investigador", (req, res) => {
  */
 router.delete("/investigador/:researcher_document", (req, res) => {
   let researcher_document = req.params.researcher_document;
-
   if (researcher_document) {
     _controlador
-      .eliminarInvestigador({ researcher_document })
+      .eliminarInvestigador(researcher_document)
       .then((respuestaDB) => {
         res.send({ ok: true, info: {}, mensaje: "Investigador eliminado" });
       })
@@ -60,6 +59,26 @@ router.delete("/investigador/:researcher_document", (req, res) => {
         res.send(error);
       });
   }
+});
+
+/**
+ * Actualizar un investigador
+ */
+router.put("/investigador/:researcher_document", (req, resp) => {
+  let researcher_document = req.params.researcher_document;
+  let investigador = req.body;
+  _controlador
+    .modificarInvestigador(investigador, researcher_document)
+    .then((respuestaDB) => {
+      resp.send({
+        ok: true,
+        mensaje: "Modificado exitosamente ",
+        info: respuestaDB,
+      });
+    })
+    .catch((error) => {
+      resp.send({ ok: false, mensaje: "Error al modificar ", info: error });
+    });
 });
 
 module.exports = router;

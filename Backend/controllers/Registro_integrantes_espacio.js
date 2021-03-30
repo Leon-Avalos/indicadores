@@ -94,13 +94,15 @@ let eliminarIntegrante = async ({ idresearcher_workspace }) => {
 * @param {*} rol
 */
 
-let asignarRol = async({idresearcher_workspace}, {idrole}) => {
+let asignarRol = async(idrole, researcher_document, idworkspace) => {
   let _servicio = new ServicioPg();
   let sql = 
-  `UPDATE FROM public.researcher_workspace 
+  `UPDATE public.researcher_workspace 
   SET idrole = ${idrole}
-  WHERE idresearcher_workspace = ${idresearcher_workspace};`;
+  WHERE researcher_document = ${researcher_document}
+  and idworkspace = ${idworkspace};`;
 
+  console.log(sql);
   let respuesta = await _servicio.ejecutarSql(sql);
   return respuesta;
 };

@@ -172,11 +172,18 @@ export default {
         password: this.password
       };
       // Realizo una peticion de tipo POST a una API falsa (proposito pruebas) y muestro por consola el resultado
-      axios.post('http://localhost:3001/investigador', testPost).then((result) => {
+      axios.post('http://localhost:3001/investigador', testPost).then((resp) => {
         this.obtenerInvestigadores();
+        if (resp.data.name == 'error') {
+          alert('No se puede ingresar usuario porque el nro. de cedula ya se encuentra registrado');
+          this.researcher_document = "",
+          this.first_name = "",
+          this.last_name = "",
+          this.email = "",
+          this.password = ""
+        }
         // Añadir logica para manejar la respuesta
       })
-      
     },
 
     validarFormulario: function () {
