@@ -17,10 +17,13 @@
           <label for="selectNombreCompromiso" class="form-label">Compromiso</label>
           <select v-model="nombreCompromiso" class="form-select"  aria-label="selectCompromiso" id="selectNombreCompromiso" required>
             <option value="">Selecciona el nombre del compromiso</option>
-            
           </select>
           <div class="invalid-feedback">Selecciona un compromiso</div>
         </div>
+
+        <br>
+        <hr>
+        <br>
 
         <div class="mb-3">
           <label for="descripcion" class="form-label">Descripción</label>
