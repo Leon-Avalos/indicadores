@@ -1,4 +1,5 @@
 const { Pool } = require("pg");
+const config = require('../config')
 
 class ServicioPG {
   constructor() {
@@ -6,7 +7,7 @@ class ServicioPG {
       user: "postgres",
       host: "localhost",
       database: "ipm",
-      password: "",
+      password: config.PASSWORD || '',
       port: 5432,
     });
   }
