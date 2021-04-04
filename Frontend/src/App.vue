@@ -49,4 +49,18 @@
 #btnArchivo{
   margin-bottom: 60px;
 }
+
+.btn-mod{
+  border-radius: 10px;
+  font-size: 15px;
+  margin-top: 5px;
+  margin-right: 5px; 
+}
+
+.btn-del{
+  border-radius: 10px;
+  font-size: 15px;
+  margin-top: 5px;
+  margin-right: 5px;  
+}
 </style>
