@@ -108,6 +108,7 @@
               <th>Nombre</th>
               <th>Apellido</th>
               <th>Correo</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -119,6 +120,9 @@
               <td>{{ investigador.first_name }}</td>
               <td>{{ investigador.last_name }}</td>
               <td>{{ investigador.email }}</td>
+              <td> 
+                <button type="button" @click.prevent="modificarInvestigador" class="btn btn-outline-success">Modificar</button>
+              </td>
             </tr>
           </tbody>
         </table>
