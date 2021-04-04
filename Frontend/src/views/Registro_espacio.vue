@@ -45,9 +45,11 @@
               </tr>
             </thead>
             <tbody>
-              
-
-              
+              <!--<tr v-for="espacio_trabajo in espacios" :key="espacio_trabajo.workspace_name">
+                <td>{{ espacio_trabajo.workspace_name }}</td>
+                <td>{{ espacio_trabajo.description }}</td>
+                <td>{{ espacio_trabajo.due_date }}</td>
+              </tr>-->
             </tbody>
           </table>
       </section>
@@ -59,6 +61,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+import axios from "axios";
 
 export default {
   name: "Home",
@@ -73,17 +76,24 @@ export default {
 
   }),
   methods: {
+    obtenerEspaciosDeTrabajo: function () {
+      axios.get("http://localhost:3001/workspace")
+        .then((result) => {
+          this.espacios = result.data;
+        });
+    },
     crearEspacioDeTrabajo: function() {
       this.espaciosDeTrabajo.push({
         nombreEspacio: this.nombreEspacio,
-        descripcionEspacio: this.descripcionEspacio
+        descripcionEspacio: this.descripcionEspacio,
+        fecha:this.fecha
       });
       this.limpiarCampos();
     },  
     limpiarCampos: function(){
       this.nombreEspacio = '';
-      this.fecha = '';
       this.descripcionEspacio = '';
+      this.fecha = '';
     }
   }
 };
