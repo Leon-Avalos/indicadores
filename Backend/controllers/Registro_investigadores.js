@@ -94,12 +94,21 @@ let modificarInvestigador = async (investigador, researcher_document) => {
     throw { ok: false, mensaje: "Documento erroneo, no encontrado" };
   } else {
     let _servicio = new ServicioPg();
-    let sql = `UPDATE public.researcher
-    SET first_name= '${investigador.first_name}', 
-    last_name= '${investigador.last_name}', 
-    email= '${investigador.email}', 
-    password= '${investigador.password}'
-    WHERE researcher_document = ${researcher_document};`;
+    let sql = ''
+    if (investigador.password == "---") {
+      sql = `UPDATE public.researcher
+      SET first_name= '${investigador.first_name}', 
+      last_name= '${investigador.last_name}', 
+      email= '${investigador.email}'
+      WHERE researcher_document = ${researcher_document};`;
+    } else{
+      sql = `UPDATE public.researcher
+      SET first_name= '${investigador.first_name}', 
+      last_name= '${investigador.last_name}', 
+      email= '${investigador.email}', 
+      password= '${investigador.password}'
+      WHERE researcher_document = ${researcher_document};`;
+    }
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
   }

@@ -91,8 +91,18 @@
             type="submit"
             @click.prevent="crearInvestigador"
             class="btn btn-outline-success"
+              v-if="!enEdicion"
           >
             Registrar
+          </button>
+
+          <button
+            type="submit"
+            @click.prevent="modificarInvestigador"
+              class="btn btn-outline-success"
+              v-if="enEdicion"
+          >
+            Actualizar
           </button>
         </form>
       </section>
@@ -108,10 +118,12 @@
               <th>Nombre</th>
               <th>Apellido</th>
               <th>Correo</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr
+              data-selected= 0
               v-for="investigador in investigadores"
               :key="investigador.researcher_document"
             >
@@ -119,6 +131,22 @@
               <td>{{ investigador.first_name }}</td>
               <td>{{ investigador.last_name }}</td>
               <td>{{ investigador.email }}</td>
+              <td>
+                <button
+                  size="sm"
+                  @click.prevent="cargarInvestigador"
+                  class="btn-mod btn-outline-primary"
+                  id="btn-mod"
+                  >Modificar
+                </button>
+                <button
+                  size="sm"
+                  @click.prevent="eliminarInvestigador"
+                  class="btn-del btn-outline-danger"
+                  id="btn-del"
+                  >Eliminar
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -148,6 +176,8 @@ export default {
     correoValido: true,
     password: "",
     investigadores: [],
+    enEdicion: false,
+    aux: false
   }),
 
   created: function () {
@@ -175,15 +205,77 @@ export default {
       axios.post('http://localhost:3001/investigador', testPost).then((resp) => {
         this.obtenerInvestigadores();
         if (resp.data.name == 'error') {
-          alert('No se puede ingresar usuario porque el nro. de cedula ya se encuentra registrado');
           this.researcher_document = "",
           this.first_name = "",
           this.last_name = "",
           this.email = "",
           this.password = ""
+          alert('No se puede ingresar usuario porque el nro. de cedula ya se encuentra registrado');
+        } else if(resp.data.ok) {
+          this.researcher_document = "",
+          this.first_name = "",
+          this.last_name = "",
+          this.email = "",
+          this.password = ""
+          alert('Investigador registrado');
         }
-        // Añadir logica para manejar la respuesta
       })
+    },
+
+    cargarInvestigador: function(e){
+      this.enEdicion = true
+      var fila = e.target.parentNode.parentNode; //Se almacena en una variable a la fila que la contiene
+
+      document.getElementById("inputCedulaInvestigador").setAttribute("disabled", "")
+
+      this.researcher_document = fila.cells[0].textContent
+      this.first_name = fila.cells[1].textContent
+      this.last_name = fila.cells[2].textContent
+      this.email = fila.cells[3].textContent
+      this.password = "---"
+    },
+
+    modificarInvestigador: function(){
+      this.validarFormulario();
+      let testPut = {
+        researcher_document: this.researcher_document,
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        password: this.password,
+      };
+      axios.put(`http://localhost:3001/investigador/${testPut.researcher_document}`, testPut).then((resp) => {
+        this.obtenerInvestigadores();
+        if (resp.data.name == 'error') {
+          alert('No se puede actualizar el usuario');
+        }
+        this.researcher_document = "",
+        this.first_name = "",
+        this.last_name = "",
+        this.email = "",
+        this.password = ""
+        document.getElementById("inputCedulaInvestigador").removeAttribute("disabled")
+      });
+      alert('Investigador Actualizado')
+      this.enEdicion = false
+    },
+
+    eliminarInvestigador: function(e){
+      var fila = e.target.parentNode.parentNode; //Se almacena en una variable a la fila que la contiene
+      var toDelete = fila.cells[0].textContent
+
+      var confirmar = confirm("¿Seguro que desea eliminar este investigador de la base de datos?")
+      if(confirmar){
+        axios.delete(`http://localhost:3001/investigador/${toDelete}`).then((resp) => {
+          this.obtenerInvestigadores();
+          if (resp.data.name == 'error') {
+            alert('No se puede eliminar el usuario');
+          }
+        });
+        alert('Investigador Eliminado')
+      }else{
+        alert('Eliminación cancelada')
+      }
     },
 
     validarFormulario: function () {
