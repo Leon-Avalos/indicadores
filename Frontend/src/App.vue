@@ -51,16 +51,12 @@
 }
 
 .btn-mod{
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 15px;
-  margin-top: 5px;
-  margin-right: 5px; 
 }
 
 .btn-del{
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 15px;
-  margin-top: 5px;
-  margin-right: 5px;  
 }
 </style>
