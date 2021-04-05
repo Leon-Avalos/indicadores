@@ -48,7 +48,25 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Renderizar integrantes de el espacio seleccionado-->
+              <td></td>
+              <td></td>
+
+              <td>
+                <select v-model="rolInvestigador"  class="form-select"  aria-label="selectRol" id="selectRol" required>
+                  <option value="0">Sin asignar</option>
+                  <option value="1">Lider de investigación</option>
+                  <option value="2">Co-investigador</option>
+                  <option value="3">Auxiliar de investigación</option>
+                </select> <label> </label>
+                <button
+                  size="sm"
+                  @click.prevent="guardarRol"
+                  class="btn btn-outline-primary"
+                  id="btn-del"
+                  >Asignar rol
+                </button>
+              </td>
+              <td></td>
             </tbody>
           </table>
       </section>

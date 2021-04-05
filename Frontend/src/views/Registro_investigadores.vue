@@ -135,14 +135,14 @@
                 <button
                   size="sm"
                   @click.prevent="cargarInvestigador"
-                  class="btn-mod btn-outline-primary"
+                  class="btn btn-outline-primary"
                   id="btn-mod"
                   >Modificar
-                </button>
+                </button> <label> </label>
                 <button
                   size="sm"
                   @click.prevent="eliminarInvestigador"
-                  class="btn-del btn-outline-danger"
+                  class="btn btn-outline-danger"
                   id="btn-del"
                   >Eliminar
                 </button>
