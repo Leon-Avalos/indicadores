@@ -123,7 +123,6 @@
           </thead>
           <tbody>
             <tr
-              data-selected= 0
               v-for="investigador in investigadores"
               :key="investigador.researcher_document"
             >
@@ -193,7 +192,6 @@ export default {
     },
     crearInvestigador: function () {
       this.validarFormulario();
-      //Construyo un objeto clave valor con los models declarados en el data
       let testPost = {
         first_name: this.first_name,
         last_name: this.last_name,
@@ -201,31 +199,21 @@ export default {
         email: this.email,
         password: this.password
       };
-      // Realizo una peticion de tipo POST a una API falsa (proposito pruebas) y muestro por consola el resultado
       axios.post('http://localhost:3001/investigador', testPost).then((resp) => {
-        this.obtenerInvestigadores();
         if (resp.data.name == 'error') {
-          this.researcher_document = "",
-          this.first_name = "",
-          this.last_name = "",
-          this.email = "",
-          this.password = ""
+          this.limpiarCampos();
           alert('No se puede ingresar usuario porque el nro. de cedula ya se encuentra registrado');
         } else if(resp.data.ok) {
-          this.researcher_document = "",
-          this.first_name = "",
-          this.last_name = "",
-          this.email = "",
-          this.password = ""
+          this.limpiarCampos();
           alert('Investigador registrado');
         }
       })
+      this.obtenerInvestigadores();
     },
 
     cargarInvestigador: function(e){
       this.enEdicion = true
       var fila = e.target.parentNode.parentNode; //Se almacena en una variable a la fila que la contiene
-
       document.getElementById("inputCedulaInvestigador").setAttribute("disabled", "")
 
       this.researcher_document = fila.cells[0].textContent
@@ -249,11 +237,7 @@ export default {
         if (resp.data.name == 'error') {
           alert('No se puede actualizar el usuario');
         }
-        this.researcher_document = "",
-        this.first_name = "",
-        this.last_name = "",
-        this.email = "",
-        this.password = ""
+        this.limpiarCampos();
         document.getElementById("inputCedulaInvestigador").removeAttribute("disabled")
       });
       alert('Investigador Actualizado')
@@ -296,6 +280,13 @@ export default {
       var regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
       return regexEmail.test(email.toLowerCase());
     },
+    limpiarCampos: function(){
+      this.researcher_document = "",
+      this.first_name = "",
+      this.last_name = "",
+      this.email = "",
+      this.password = ""
+    }
   },
 };
 </script>

@@ -42,14 +42,17 @@
                 <th>Codigo</th>
                 <th>Nombre espacio</th>
                 <th>Descripción</th>
+                <th>Fecha finalización</th>
               </tr>
             </thead>
             <tbody>
-              <!--<tr v-for="espacio_trabajo in espacios" :key="espacio_trabajo.workspace_name">
-                <td>{{ espacio_trabajo.workspace_name }}</td>
-                <td>{{ espacio_trabajo.description }}</td>
-                <td>{{ espacio_trabajo.due_date }}</td>
-              </tr>-->
+              <tr v-for="espacio in espaciosDeTrabajo" 
+              :key="espacio.idworkspace">
+                <td>{{ espacio.idworkspace }}</td>
+                <td>{{ espacio.workspace_name }}</td>
+                <td>{{ espacio.description }}</td>
+                <td>{{ espacio.due_date }}</td>
+              </tr>
             </tbody>
           </table>
       </section>
@@ -70,31 +73,62 @@ export default {
   },
   data: () => ({
     nombreEspacio: '',
-    fecha: '',
+    nombreValido: true,
     descripcionEspacio: '',
+    descripcionValida: true,
+    fecha: '',
+    fechaValida: true,
     espaciosDeTrabajo: []
 
   }),
+  created: function () {
+    this.obtenerEspaciosDeTrabajo();
+  },
   methods: {
     obtenerEspaciosDeTrabajo: function () {
       axios.get("http://localhost:3001/workspace")
         .then((result) => {
-          this.espacios = result.data;
+          this.espaciosDeTrabajo = result.data.info.map(x => {
+            var f = Object.assign({}, x);
+            f.due_date = x.due_date.slice(0, 10);
+            return f;
+          });
         });
     },
     crearEspacioDeTrabajo: function() {
-      this.espaciosDeTrabajo.push({
-        nombreEspacio: this.nombreEspacio,
-        descripcionEspacio: this.descripcionEspacio,
-        fecha:this.fecha
-      });
-      this.limpiarCampos();
+      this.validarFormulario();
+      let testPost = {
+        workspace_name: this.nombreEspacio,
+        description: this.descripcionEspacio,
+        due_date: this.fecha
+      };
+      axios.post('http://localhost:3001/workspace', testPost).then((resp) => {
+        if (resp.data.name == 'error') {
+          this.limpiarCampos();
+          alert('No se puede ingresar el workspace porque ya se encuentra registrado');
+        } else if(resp.data.ok) {
+          this.limpiarCampos();
+          alert('Espacio de trabajo registrado');
+        }
+      })
+      this.obtenerEspaciosDeTrabajo();
     },  
     limpiarCampos: function(){
       this.nombreEspacio = '';
       this.descripcionEspacio = '';
       this.fecha = '';
-    }
+    },
+    validarFormulario: function () {
+      if (!this.first_name) {
+        this.nombreValido = false;
+      }
+      if (!this.last_name) {
+        this.descripcionValida = false;
+      }
+      if (!this.researcher_document) {
+        this.fechaValida = false;
+      }
+    },
   }
 };
 </script>
