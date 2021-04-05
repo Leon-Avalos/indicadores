@@ -131,6 +131,9 @@ export default {
               case 2:
                 this.compromisos[i]["status"] = "Finalizado";
                 break;
+              case 3:
+                this.compromisos[i]["status"] = "En Curso (Retrasado)";
+                break;
               default:
                 break;
             }
