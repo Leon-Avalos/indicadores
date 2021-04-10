@@ -205,10 +205,11 @@ export default {
           alert('No se puede ingresar usuario porque el nro. de cedula ya se encuentra registrado');
         } else if(resp.data.ok) {
           this.limpiarCampos();
+          this.obtenerInvestigadores();
           alert('Investigador registrado');
         }
       })
-      this.obtenerInvestigadores();
+      
     },
 
     cargarInvestigador: function(e){
