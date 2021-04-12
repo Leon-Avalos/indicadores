@@ -47,9 +47,8 @@ router.put("/archivo/:idworkspace/:idcompromise", (req, res) => {
    */
 router.put("/archivo/comentario/:idworkspace/:idcompromise", (req, res) => {
     let idworkspace = req.params.idworkspace;
-    let idcompromise = req.params.idcompromise
+    let idcompromise = req.params.idcompromise;
     let feedback_commentary = req.body.feedback_commentary;
-    console.log(feedback_commentary)
   
     if (idworkspace && idcompromise) {
       _controlador
@@ -58,7 +57,6 @@ router.put("/archivo/comentario/:idworkspace/:idcompromise", (req, res) => {
           res.send({ ok: true, info: {}, mensaje: "Comentario de retroalimentación actualizado" });
         })
         .catch((error) => {
-            console.log(error)
             res.send(error);
         });
     }
