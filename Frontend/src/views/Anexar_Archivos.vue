@@ -11,19 +11,6 @@
 
     <div class="container">
       <form @submit.prevent="enviarArchivo" enctype="multipart/form-data" class="was-validated">
-        <div class="mb-3">
-          <label class="form-label" for="cedula">Cedula</label>
-          <input
-            v-model="cedulaInvestigador"
-            class="form-control"
-            type="text"
-            placeholder="Cedula Investigador"
-            name="cedula"
-            id="cedula"
-            required
-          />
-          <div class="invalid-feedback">Ingresa la cedula del investigador</div>
-        </div>
 
         <div class="mb-3">
           <label for="selectNombreCompromiso" class="form-label"
@@ -44,22 +31,6 @@
         <br />
         <hr />
         <br />
-
-        <div class="mb-3">
-          <label for="descripcion" class="form-label">Descripción</label>
-          <textarea
-            v-model="descripcionEntrega"
-            class="form-control"
-            name="descripcion"
-            id="descripcion"
-            cols="30"
-            rows="6"
-            required
-          ></textarea>
-          <div class="invalid-feedback">
-            Debes registrar una descripción a tu entrega
-          </div>
-        </div>
 
         <div class="mb-3">
           <label for="descripcion" class="form-label"

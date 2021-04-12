@@ -12,5 +12,6 @@ npm install vue bootstrap bootstrap-vue
 ```
 ### Compila y despliega el server local para desarrollo
 ```
+node app.js
 npm run serve
 ```

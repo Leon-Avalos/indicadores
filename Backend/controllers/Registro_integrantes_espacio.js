@@ -91,7 +91,7 @@ let eliminarIntegrante = async ({ idresearcher_workspace }) => {
       }  
 };
 /**
-* Método POST (UPDATE) para guardar en la base de datos un rol asignado a un investigador
+* Método PUT para guardar en la base de datos un rol asignado a un investigador
 * @param {*} rol
 */
 

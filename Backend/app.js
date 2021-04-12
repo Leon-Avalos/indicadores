@@ -19,7 +19,8 @@ const rutas_compromisos = require("./routes/Crear_compromiso");
 const rutas_espacios = require("./routes/Registro_espacio");
 const rutas_integrantes = require("./routes/Registro_integrantes_espacio");
 const rutas_investigadores = require("./routes/Registro_investigadores");
-app.use(rutas_compromisos, rutas_espacios, rutas_integrantes, rutas_investigadores);
+const rutas_archivos = require("./routes/Anexar_Archivo")
+app.use(rutas_compromisos, rutas_espacios, rutas_integrantes, rutas_investigadores, rutas_archivos);
 
 //Puerto
 const PORT = config.PORT || 3001;
