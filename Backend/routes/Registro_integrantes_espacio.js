@@ -4,7 +4,7 @@ const router = express.Router();
 const _controlador = require("../controllers/Registro_integrantes_espacio");
 
 /**
- * Obtener todas los integrante
+ * Obtener todas los integrantes
  */
 router.get("/integrante", (req, res) => {
   _controlador
