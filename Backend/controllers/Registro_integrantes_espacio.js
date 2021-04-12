@@ -103,7 +103,6 @@ let asignarRol = async(idrole, researcher_document, idworkspace) => {
   WHERE researcher_document = ${researcher_document}
   and idworkspace = ${idworkspace};`;
 
-  console.log(sql);
   let respuesta = await _servicio.ejecutarSql(sql);
   return respuesta;
 };
