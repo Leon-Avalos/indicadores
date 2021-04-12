@@ -11,24 +11,46 @@
       <section class="form">
         <form class="was-validated">
 
-          <div class="mb-3">
+          <div class="mb-3" v-if="!enEdicion">
               <label for="inputNombreEspacioTrabajo" class="form-label">Espacio de trabajo</label>
               <input v-model="nombreEspacio" type="text" class="form-control" id="inputNombreEspacioTrabajo" placeholder="Nombre espacio de trabajo" required> 
               <div class="invalid-feedback"> Ingrese el nombre del espacio de trabajo del proyecto </div>
           </div>
 
-          <div class="mb-3">
+          <div class="mb-3" v-if="!enEdicion">
             <label for="inputDescripciónEspacioTrabajo" class="form-label">Descripción espacio</label>
             <textarea v-model="descripcionEspacio" class="form-control" id="inputDescripciónEspacioTrabajo" rows="3" required></textarea>
             <div class="invalid-feedback"> Ingrese una descripción basica del espacio de proyecto </div>
           </div>
-          <div class="mb-3">
+          
+          <div class="mb-3" v-if="!enEdicion">
             <label for="inputFechaCulminacionProyecto" class="form-label">Fecha de culminación del proyecto</label>
             <input type="date" v-model="fecha" name="Fecha"  class="form-control" id="inputFechaCulminacionProyecto" required>
             <div class="invalid-feedback"> Ingrese fecha de culminación del proyecto </div>
           </div>
 
-          <button type="submit" @click.prevent="crearEspacioDeTrabajo" class="btn btn-outline-success">Registrar</button>
+          <div class="mb-3" v-if="enEdicion">
+            <label for="inputReason" class="form-label">Razon de prorrogra</label>
+            <textarea v-model="reason_extended" class="form-control" id="inputReason" rows="3" required></textarea>
+            <div class="invalid-feedback"> Explique porque extendera la fecha del proyecto </div>
+          </div>
+          
+          <div class="mb-3" v-if="enEdicion">
+            <label for="inputFechaExtended" class="form-label">Nueva fecha de culminación del proyecto</label>
+            <input type="date" v-model="date_extended" name="Fecha"  class="form-control" id="inputFechaExtended" required>
+            <div class="invalid-feedback"> Ingrese nueva fecha de culminación del proyecto </div>
+          </div>
+
+          <button type="submit" @click.prevent="crearEspacioDeTrabajo" class="btn btn-outline-success" v-if="!enEdicion">Registrar</button>
+          
+          <button
+            type="submit"
+            @click.prevent="modificarFecha"
+              class="btn btn-outline-success"
+              v-if="enEdicion"
+          >
+            Actualizar
+          </button>
         </form>
       </section>
 
@@ -43,6 +65,9 @@
                 <th>Nombre espacio</th>
                 <th>Descripción</th>
                 <th>Fecha finalización</th>
+                <th>Fecha prorroga</th>
+                <th>Razón prorroga</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -52,6 +77,17 @@
                 <td>{{ espacio.workspace_name }}</td>
                 <td>{{ espacio.description }}</td>
                 <td>{{ espacio.due_date }}</td>
+                <td>{{ espacio.date_extended }}</td>
+                <td>{{ espacio.reason_extended }}</td>
+                <td>
+                <button
+                  size="sm"
+                  @click.prevent="cargarDatos"
+                  class="btn btn-outline-primary"
+                  id="btn-mod"
+                  >Modificar
+                </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -72,13 +108,17 @@ export default {
     HelloWorld,
   },
   data: () => ({
+    idworkspace: '',
     nombreEspacio: '',
     nombreValido: true,
     descripcionEspacio: '',
     descripcionValida: true,
     fecha: '',
     fechaValida: true,
-    espaciosDeTrabajo: []
+    espaciosDeTrabajo: [],
+    reason_extended: '',
+    date_extended: '',
+    enEdicion: false
 
   }),
   created: function () {
@@ -91,6 +131,7 @@ export default {
           this.espaciosDeTrabajo = result.data.info.map(x => {
             var f = Object.assign({}, x);
             f.due_date = x.due_date.slice(0, 10);
+            f.date_extended = x.date_extended.slice(0, 10);
             return f;
           });
         });
@@ -112,7 +153,34 @@ export default {
         }
       })
       this.obtenerEspaciosDeTrabajo();
-    },  
+    },
+
+    cargarDatos: function(e){
+      this.enEdicion = true
+      var fila = e.target.parentNode.parentNode; //Se almacena en una variable a la fila que la contiene
+      
+      this.idworkspace = fila.cells[0].textContent
+      this.date_extended = fila.cells[4].textContent
+      this.reason_extended = fila.cells[5].textContent
+    },
+
+    modificarFecha: function(){
+      let testPut = {
+        idworkspace: this.idworkspace,
+        date_extended: this.date_extended,
+        reason_extended: this.reason_extended
+      };
+      axios.put(`http://localhost:3001/workspace/${testPut.idworkspace}`, testPut).then((resp) => {
+        if (resp.data.name == 'error') {
+          alert('No se puede actualizar el workspace');
+        }
+        this.limpiarCampos();
+        this.obtenerEspaciosDeTrabajo();
+      });
+      alert('Workspace Actualizado')
+      this.enEdicion = false
+    },
+
     limpiarCampos: function(){
       this.nombreEspacio = '';
       this.descripcionEspacio = '';

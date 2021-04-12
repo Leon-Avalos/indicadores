@@ -7,7 +7,7 @@
    
     <div class="container">
       <form class="was-validated">
-        <div class="mb-3">
+        <div class="mb-3" v-if="!enEdicion">
           <label for="inputIdEspacioTrabajo" class="form-label">Espacio de trabajo</label>
           <select v-model="idEspacioDeTrabajo" class="form-select"  aria-label="selectespacio" id="selectIdEspacioTrabajo" required>
             <option value="">Seleccione un espacio de trabajo</option>
@@ -16,7 +16,7 @@
           <div class="invalid-feedback">Debe Seleccionar un espacio de trabajo</div>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3" v-if="!enEdicion">
           <label for="inputIdInvestigador" class="form-label">Nombre investigador</label>
           <select v-model="idInvestigador" class="form-select"  aria-label="selectinvestigador" id="selectIdInvestigador" required>
             <option value="">Seleccione un investigador para el compromiso</option>
@@ -29,7 +29,7 @@
         <hr>
         <br>
         
-        <div class="mb-3">
+        <div class="mb-3" v-if="!enEdicion">
           <label for="inputNombreCompromiso" class="form-label">Nombre del compromiso</label>
           <input v-model="nombreCompromiso" type="text" class="form-control" id="inputNombreCompromiso" placeholder="Nombre del compromiso" required> 
           <div class="invalid-feedback">Ingresa el nombre de un compromiso</div>
@@ -41,12 +41,33 @@
             <div class="invalid-feedback">Ingresa la descripcion detallada del compromiso</div>
           </div>
 
-          <div class="mb-3">
+          <div class="mb-3" v-if="!enEdicion">
             <input v-model="fechaCompromiso" type="date" name="Fecha"  class="form-control" id="" required>
             <div class="invalid-feedback"> Ingrese fecha de culminación del compromiso </div>
           </div>
 
+          <div class="mb-3" v-if="enEdicion">
+            <label for="inputReason" class="form-label">Razon de prorrogra</label>
+            <textarea v-model="reason_extended" class="form-control" id="inputReason" rows="3" required></textarea>
+            <div class="invalid-feedback"> Explique porque extendera la fecha del proyecto </div>
+          </div>
+          
+          <div class="mb-3" v-if="enEdicion">
+            <label for="inputFechaExtended" class="form-label">Nueva fecha de culminación del proyecto</label>
+            <input type="date" v-model="date_extended" name="Fecha"  class="form-control" id="inputFechaExtended" required>
+            <div class="invalid-feedback"> Ingrese nueva fecha de culminación del proyecto </div>
+          </div>
+
           <button type="submit" @click.prevent="crearCompromiso" class="btn btn-outline-success">Registrar</button>
+
+          <button
+            type="submit"
+            @click.prevent="modificarCompromiso"
+              class="btn btn-outline-success"
+              v-if="enEdicion"
+          >
+            Actualizar
+          </button>
         </form>
 
       <section class="data">
@@ -61,6 +82,9 @@
                 <th>Descripción</th>
                 <th>Estado</th>
                 <th>Fecha finalización</th>
+                <th>Fecha prorroga</th>
+                <th>Razón prorroga</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -71,6 +95,17 @@
                 <td>{{ compromiso.compromise_description }}</td>
                 <td>{{ compromiso.status }}</td>
                 <td>{{ compromiso.due_date }}</td>
+                <td>{{ compromiso.date_extended }}</td>
+                <td>{{ compromiso.reason_extended }}</td>
+                <td>
+                <button
+                  size="sm"
+                  @click.prevent="cargarDatos"
+                  class="btn btn-outline-primary"
+                  id="btn-mod"
+                  >Modificar
+                </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -91,6 +126,7 @@ export default {
     HelloWorld,
   },
   data: () => ({
+    idcompromise: '',
     idEspacioDeTrabajo: '',
     idWorkValido: true,
     espaciosTrabajo: [],
@@ -103,7 +139,10 @@ export default {
     descValida: true,
     fechaCompromiso: '',
     fechaValida: true,
-    compromisos: []
+    compromisos: [],
+    reason_extended: '',
+    date_extended: '',
+    enEdicion: false
   }),
   created: function () {
     this.obtenerCompromisos();
@@ -117,6 +156,7 @@ export default {
           this.compromisos = result.data.info.map(x => {
             var f = Object.assign({}, x);
             f.due_date = x.due_date.slice(0, 10);
+            f.date_extended = x.date_extended.slice(0, 10);
             return f;
           });
           for (let i = 0; i < this.compromisos.length; i++) {
@@ -185,7 +225,33 @@ export default {
         }
       })
       this.obtenerCompromisos();
-    },  
+    },
+    cargarDatos: function(e){
+      this.enEdicion = true
+      var fila = e.target.parentNode.parentNode; //Se almacena en una variable a la fila que la contiene
+      
+      this.idcompromise = fila.cells[0].textContent
+      this.descripcionCompromiso = fila.cells[2].textContent
+      this.date_extended = fila.cells[5].textContent
+      this.reason_extended = fila.cells[6].textContent
+    },
+    modificarCompromiso: function(){
+      let testPut = {
+        idcompromise: this.idcompromise,
+        compromise_description: this.descripcionCompromiso,
+        date_extended: this.date_extended,
+        reason_extended: this.reason_extended
+      };
+      axios.put(`http://localhost:3001/compromiso/${testPut.idcompromise}`, testPut).then((resp) => {
+        if (resp.data.name == 'error') {
+          alert('No se puede actualizar el workspace');
+        }
+        this.limpiarCampos();
+        this.obtenerCompromisos();
+      });
+      alert('Compromiso Actualizado')
+      this.enEdicion = false
+    },
     limpiarCampos: function(){
       this.idEspacioDeTrabajo = '';
       this.idInvestigador = '';

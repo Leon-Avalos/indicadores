@@ -48,22 +48,21 @@ router.post("/compromiso", (req, res) => {
   }
 });
 
-/**
- * Eliminar un compromiso
- */
-router.delete("/compromiso/:idcompromise", (req, res) => {
+router.put("/compromiso/:idcompromise", (req, resp) => {
   let idcompromise = req.params.idcompromise;
-
-  if (idcompromise) {
-    _controlador
-      .eliminarCompromiso({ idcompromise })
-      .then((respuestaDB) => {
-        res.send({ ok: true, info: {}, mensaje: "Compromiso eliminado" });
-      })
-      .catch((error) => {
-        res.send(error);
+  let bodyx = req.body;
+  _controlador
+    .modificarCompromiso(idcompromise, bodyx)
+    .then((respuestaDB) => {
+      resp.send({
+        ok: true,
+        mensaje: "Modificado exitosamente ",
+        info: respuestaDB,
       });
-  }
+    })
+    .catch((error) => {
+      resp.send({ ok: false, mensaje: "Error al modificar ", info: error });
+    });
 });
 
 module.exports = router;

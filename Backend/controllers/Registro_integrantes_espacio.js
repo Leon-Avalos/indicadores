@@ -38,7 +38,6 @@ let guardarIntegrante = async (integrante) => {
     ${integrante.researcher_document}, 
     '${integrante.idworkspace}');`;
     
-  console.log(sql)
   let respuesta = await _servicio.ejecutarSql(sql);
   return respuesta;
 };

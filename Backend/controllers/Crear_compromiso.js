@@ -83,9 +83,25 @@ let eliminarCompromiso = async ({ idcompromise }) => {
   return respuesta;
 };
 
+let modificarCompromiso = async (idcompromise, bodyx) => {
+  if (bodyx.idcompromise != idcompromise) {
+    throw { ok: false, mensaje: "Documento erroneo, no encontrado" };
+  } else {
+    let _servicio = new ServicioPg();
+    let sql = `UPDATE public.compromise
+    SET compromise_description='${bodyx.compromise_description}', 
+    date_extended='${bodyx.date_extended}', 
+    reason_extended='${bodyx.reason_extended}'
+    WHERE idcompromise = ${idcompromise};`;
+    let respuesta = await _servicio.ejecutarSql(sql);
+    return respuesta;
+  }
+};
+
 module.exports = {
   validarCompromiso,
   guardarCompromiso,
   consultarCompromisos,
   eliminarCompromiso,
+  modificarCompromiso
 };

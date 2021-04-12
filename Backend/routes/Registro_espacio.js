@@ -48,22 +48,21 @@ router.post("/workspace", (req, res) => {
   }
 });
 
-/**
- * Eliminar un workspace
- */
-router.delete("/workspace/:idworkspace", (req, res) => {
+router.put("/workspace/:idworkspace", (req, resp) => {
   let idworkspace = req.params.idworkspace;
-
-  if (idworkspace) {
-    _controlador
-      .eliminarEspacioTrabajo({ idworkspace })
-      .then((respuestaDB) => {
-        res.send({ ok: true, info: {}, mensaje: "Workspace eliminado" });
-      })
-      .catch((error) => {
-        res.send(error);
+  let bodyx = req.body;
+  _controlador
+    .modificarFecha(idworkspace, bodyx)
+    .then((respuestaDB) => {
+      resp.send({
+        ok: true,
+        mensaje: "Modificado exitosamente ",
+        info: respuestaDB,
       });
-  }
+    })
+    .catch((error) => {
+      resp.send({ ok: false, mensaje: "Error al modificar ", info: error });
+    });
 });
 
 module.exports = router;

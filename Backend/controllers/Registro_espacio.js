@@ -67,9 +67,23 @@ let eliminarEspacioTrabajo = async ({ idworkspace }) => {
   return respuesta;
 };
 
+let modificarFecha = async (idworkspace, bodyx) => {
+  if (bodyx.idworkspace != idworkspace) {
+    throw { ok: false, mensaje: "Documento erroneo, no encontrado" };
+  } else {
+    let _servicio = new ServicioPg();
+    let sql = `UPDATE public.workspace
+    SET date_extended='${bodyx.date_extended}', reason_extended='${bodyx.reason_extended}'
+    WHERE idworkspace = ${idworkspace};`;
+    let respuesta = await _servicio.ejecutarSql(sql);
+    return respuesta;
+  }
+};
+
 module.exports = {
   validarEspacioTrabajo,
   guardarEspacioTrabajo,
   consultarEspaciosTrabajo,
   eliminarEspacioTrabajo,
+  modificarFecha
 };
