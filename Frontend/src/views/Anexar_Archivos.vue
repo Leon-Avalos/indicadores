@@ -13,15 +13,15 @@
       <form @submit.prevent="enviarArchivo" enctype="multipart/form-data" class="was-validated">
 
         <div class="mb-3">
-          <label for="selectNombreCompromiso" class="form-label"
+          <label for="selectIdCompromiso" class="form-label"
             >Compromiso</label
           >
           <select
             v-model="nombreCompromiso"
             class="form-select"
             aria-label="selectCompromiso"
-            id="selectNombreCompromiso"
-            
+            id="selectIdCompromiso"
+            required
           >
             <option value="">Selecciona el nombre del compromiso</option>
           </select>
@@ -73,14 +73,33 @@ export default {
   },
   data: () => ({
     cedulaInvestigador: "",
-    nombreCompromiso: [],
+    nombreCompromiso: '',
     descripcionEntrega: "",
+    compromisos: [],
     archivo: "",
   }),
+  created: function () {
+    this.obtenerCompromisos();
+  },
   methods: {
     cargarArchivo() {
       this.archivo = this.$refs.file.files[0];
       console.log(this.archivo.name);
+    },
+    stringToHTML: function(s){
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(s, "text/html");
+      return doc.body.firstChild;
+    },
+    obtenerCompromisos: function () {
+      axios.get("http://localhost:3001/compromiso")
+        .then((result) => {
+          this.compromisos = result.data.info
+          for (let i = 0; i < this.compromisos.length; i++) {
+            var html = this.stringToHTML(`<option value=${this.compromisos[i]['idcompromise']}>${this.compromisos[i]['compromise_name']}</option>`);
+            document.getElementById('selectIdCompromiso').appendChild(html)
+          }
+        });
     },
     enviarArchivo() {
       console.log("Enviando: " + this.archivo.name);

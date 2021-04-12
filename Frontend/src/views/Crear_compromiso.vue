@@ -58,7 +58,7 @@
             <div class="invalid-feedback"> Ingrese nueva fecha de culminación del proyecto </div>
           </div>
 
-          <button type="submit" @click.prevent="crearCompromiso" class="btn btn-outline-success">Registrar</button>
+          <button type="submit" @click.prevent="crearCompromiso" class="btn btn-outline-success" v-if="!enEdicion">Registrar</button>
 
           <button
             type="submit"

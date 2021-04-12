@@ -54,6 +54,7 @@
               type="submit"
               @click.prevent="agregarInvestigador"
               class="btn btn-outline-success mb-3"
+              v-if="!enEdicion"
             >
               Registrar en el espacio de trabajo
             </button>
